@@ -1,0 +1,27 @@
+.main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    &__ide {
+        flex-grow: 1;
+        background-color: black;
+    }
+
+    &__spacer {
+        position: relative;
+        flex-grow: 0;
+        width: 10px;
+        background-color: white;
+
+        cursor: col-resize;
+        &:hover {
+
+        }
+    }
+
+    &__response {
+        flex-grow: 1;
+        background-color: rgb(71, 70, 70);
+    }
+}
