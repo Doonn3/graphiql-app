@@ -1,4 +1,4 @@
-import Header from '../widgets/Header';
+import Header from '../widgets/Header/Header';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes } from 'react-router-dom';
