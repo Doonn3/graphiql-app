@@ -8,6 +8,7 @@ interface IProperty {
 
 type ExpressionType = 'ObjectExpression' | 'ArrayExpression';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface INode {
   type: ExpressionType;
   properties: IProperty;
