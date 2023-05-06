@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import useResizePanel from '../../hooks/useResizePanel';
-import Divider, { IDivider } from '../Divider/Divider';
+import Divider from '../Divider/Divider';
 import { ILayout } from '../Layout/Layout';
 import style from './verticale.module.scss';
 
