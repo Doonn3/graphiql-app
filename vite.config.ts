@@ -9,7 +9,13 @@ export default defineConfig({
   plugins: [react(), eslint(), svgr()],
   resolve: {
     alias: {
+      '@entities': path.resolve(__dirname, "src/entities"),
+      '@app': path.resolve(__dirname, "src/app"),
       '@assets': path.resolve(__dirname, "src/shared/assets"),
+      '@shared': path.resolve(__dirname, "src/shared"),
+      '@features': path.resolve(__dirname, "src/features"),
+      '@pages': path.resolve(__dirname, "src/pages"),
+      '@widgets': path.resolve(__dirname, "src/widgets"),
     },
   },
 });
