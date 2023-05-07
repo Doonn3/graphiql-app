@@ -4,6 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
+import NavAuth from '../features/NavAuth/NavAuth';
 
 function Header(): JSX.Element {
   return (
@@ -22,9 +23,7 @@ function Header(): JSX.Element {
             </Nav>
 
             <Nav className="mr-auto">
-              <Nav.Link>Sign In</Nav.Link>
-              <Nav.Link>Sign Up</Nav.Link>
-              <Nav.Link>Sign Out</Nav.Link>
+              <NavAuth />
             </Nav>
           </Col>
         </Row>
