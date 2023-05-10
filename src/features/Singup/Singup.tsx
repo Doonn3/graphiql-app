@@ -1,5 +1,4 @@
 import { registerWithEmailAndPassword } from '../../firebase/firebase';
-// import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -13,9 +12,6 @@ interface SingupData {
 }
 
 function Singup() {
-  // const [userName, setUserName] = useState('');
-  // const [userEmail, setUserEmail] = useState('');
-  // const [userPassword, setUserPassword] = useState('');
   const {
     register,
     handleSubmit,
@@ -28,7 +24,7 @@ function Singup() {
 
   const singUp = (value: SingupData) => {
     registerWithEmailAndPassword(value.email, value.password);
-    navigate('/', { replace: true });
+    navigate('/main', { replace: true });
     dispatch(handleChangeSingActive(false));
   };
 

@@ -2,9 +2,10 @@ import { logInWithEmailAndPassword } from '../../firebase/firebase';
 import { Form, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { handleChangeLogActive } from '../../store/appSlice';
+import { handleChangeLogActive, setAuth } from '../../store/appSlice';
 import { useForm } from 'react-hook-form';
 import './Login.css';
+import { useState } from 'react';
 
 interface LoginData {
   email: string;
@@ -12,6 +13,7 @@ interface LoginData {
 }
 
 function Login() {
+  const [err, setErr] = useState('');
   const {
     register,
     handleSubmit,
@@ -22,10 +24,16 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const logIn = (value: LoginData) => {
-    logInWithEmailAndPassword(value.email, value.password);
-    navigate('/main', { replace: true });
-    dispatch(handleChangeLogActive(false));
+  const logIn = async (value: LoginData) => {
+    const user = await logInWithEmailAndPassword(value.email, value.password);
+    if (typeof user !== 'string') {
+      console.log('user');
+      dispatch(setAuth(true));
+      navigate('/main', { replace: true });
+      dispatch(handleChangeLogActive(false));
+    } else {
+      setErr(user);
+    }
   };
 
   return (
@@ -62,6 +70,7 @@ function Login() {
           />
           {errors.password && <span className="error">{errors.password.message}</span>}
         </Form.Group>
+        {err && <div className="mb-3 text-danger">{err}</div>}
         <Button variant="dark" type="submit">
           Sing In
         </Button>

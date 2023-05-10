@@ -12,11 +12,11 @@ ReactDOM.createRoot(root).render(<Main />);
 function Main(): JSX.Element {
   return (
     <React.StrictMode>
-      <Provider store={store}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Provider store={store}>
           <App />
-        </BrowserRouter>
-      </Provider>
+        </Provider>
+      </BrowserRouter>
     </React.StrictMode>
   );
 }

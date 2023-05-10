@@ -4,16 +4,20 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Modal, Nav } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { handleChangeLogActive, handleChangeSingActive } from '../../store/appSlice';
-import { useEffect, useState } from 'react';
-import { User, onAuthStateChanged } from 'firebase/auth';
+import {
+  handleChangeLogActive,
+  handleChangeSingActive,
+  removeUser,
+  setAuth,
+} from '../../store/appSlice';
+import { useEffect } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth, logout } from '../../firebase/firebase';
 
 function NavAuth() {
-  const logActive = useSelector((state: RootState) => state.appReducer.logActive);
-  const singActive = useSelector((state: RootState) => state.appReducer.singActive);
-
-  const [authUser, setAuthUser] = useState<User | null>(null);
+  const logActive = useSelector((state: RootState) => state.logActive);
+  const singActive = useSelector((state: RootState) => state.singActive);
+  const authUserStatus = useSelector((state: RootState) => state.authUser);
 
   const dispatch = useDispatch();
 
@@ -22,15 +26,15 @@ function NavAuth() {
   useEffect(() => {
     const listen = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setAuthUser(user);
+        dispatch(setAuth(true));
       } else {
-        setAuthUser(null);
+        dispatch(setAuth(false));
       }
     });
     return () => {
       listen();
     };
-  }, []);
+  }, [authUserStatus, dispatch]);
 
   const handleClose = () => {
     dispatch(handleChangeLogActive(false));
@@ -47,13 +51,21 @@ function NavAuth() {
     dispatch(handleChangeSingActive(true));
   };
 
+  const logoutUser = () => {
+    logout();
+    dispatch(setAuth(false));
+    navigate('/', { replace: true });
+  };
+
+  console.log(authUserStatus);
+
   return (
     <>
       <Nav.Link as={NavLink} to="/singup" onClick={handleOpenModalSing}>
         Sign Up
       </Nav.Link>
-      {authUser ? (
-        <Nav.Link onClick={logout}>Sign Out</Nav.Link>
+      {authUserStatus ? (
+        <Nav.Link onClick={logoutUser}>Sign Out</Nav.Link>
       ) : (
         <Nav.Link as={NavLink} to="/login" onClick={handleOpenModalLog}>
           Sign In

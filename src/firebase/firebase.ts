@@ -1,9 +1,10 @@
-import { initializeApp } from 'firebase/app';
+import { FirebaseError, initializeApp } from 'firebase/app';
 import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  AuthErrorCodes,
 } from 'firebase/auth';
 
 const API_KEY = import.meta.env.VITE_FIREBASE_API_KEY;
@@ -27,9 +28,19 @@ const auth = getAuth(app);
 
 const logInWithEmailAndPassword = async (email: string, password: string) => {
   try {
-    await signInWithEmailAndPassword(auth, email, password);
+    const res = await signInWithEmailAndPassword(auth, email, password);
+    return res.user;
   } catch (err) {
-    console.error(err);
+    if (err instanceof FirebaseError) {
+      console.log(err.code);
+      if (err.code === AuthErrorCodes.INVALID_PASSWORD) {
+        return 'Wrong password. Try again.';
+      } else if (err.code === 'auth/too-many-requests') {
+        return 'Too many failed login attempts. Try again later';
+      } else {
+        return 'User not found';
+      }
+    }
   }
 };
 
