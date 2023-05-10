@@ -3,19 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 const appSlice = createSlice({
   name: 'app',
   initialState: {
-    logActive: false,
-    singActive: false,
     email: null,
     id: null,
     authUser: false,
   },
   reducers: {
-    handleChangeLogActive(state, action) {
-      state.logActive = action.payload;
-    },
-    handleChangeSingActive(state, action) {
-      state.singActive = action.payload;
-    },
     setAuth(state, action) {
       state.authUser = action.payload;
     },
@@ -31,13 +23,6 @@ const appSlice = createSlice({
   },
 });
 
-export const {
-  handleChangeLogActive,
-  handleChangeSingActive,
-  setAuth,
-  setEmail,
-  setId,
-  removeUser,
-} = appSlice.actions;
+export const { setAuth, setEmail, setId, removeUser } = appSlice.actions;
 
 export default appSlice.reducer;

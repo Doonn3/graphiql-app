@@ -1,12 +1,11 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { Navigate } from 'react-router-dom';
 
 function Main() {
   const authUserStatus = useSelector((state: RootState) => state.authUser);
 
-  console.log(authUserStatus);
-
-  return authUserStatus ? <h1>MAIN</h1> : <p>You are not authorized for this page</p>;
+  return <>{authUserStatus ? <h1>MAIN</h1> : <Navigate to="/login" />}</>;
 }
 
 export default Main;

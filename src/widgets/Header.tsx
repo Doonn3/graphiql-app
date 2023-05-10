@@ -5,8 +5,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
 import NavAuth from '../features/NavAuth/NavAuth';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 function Header(): JSX.Element {
+  const authUserStatus = useSelector((state: RootState) => state.authUser);
+
   return (
     <Navbar sticky="top" bg="dark" variant="dark">
       <Container>
@@ -17,9 +21,11 @@ function Header(): JSX.Element {
               <Nav.Link as={NavLink} to="/">
                 Welcom
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/main">
-                Main
-              </Nav.Link>
+              {authUserStatus && (
+                <Nav.Link as={NavLink} to="/main">
+                  Main
+                </Nav.Link>
+              )}
             </Nav>
 
             <Nav className="mr-auto">
