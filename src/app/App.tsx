@@ -8,7 +8,7 @@ import PageNotFound from '../pages/PageNotFound/PageNotFound';
 import Login from '../features/Login/Login';
 import Singup from '../features/Singup/Singup';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../firebase/firebase';
+import { auth } from '../shared/firebase/firebase';
 
 function App() {
   const [user, loading] = useAuthState(auth);

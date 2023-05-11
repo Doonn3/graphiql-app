@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
-import { auth, logout } from '../../firebase/firebase';
+import { auth, logout } from '../../shared/firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 function NavAuth() {

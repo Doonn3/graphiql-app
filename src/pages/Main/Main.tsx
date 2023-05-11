@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase/firebase';
+import { auth } from '../../shared/firebase/firebase';
 
 function Main() {
   const [user, loading] = useAuthState(auth);
