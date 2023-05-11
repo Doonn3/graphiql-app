@@ -4,8 +4,13 @@ import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
+import NavAuth from '../../features/NavAuth/NavAuth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../shared/firebase/firebase';
 
 function Header(): JSX.Element {
+  const [user] = useAuthState(auth);
+
   return (
     <Navbar sticky="top" bg="dark" variant="dark">
       <Container>
@@ -16,15 +21,15 @@ function Header(): JSX.Element {
               <Nav.Link as={NavLink} to="/">
                 Welcom
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/main">
-                Main
-              </Nav.Link>
+              {user && (
+                <Nav.Link as={NavLink} to="/main">
+                  Main
+                </Nav.Link>
+              )}
             </Nav>
 
             <Nav className="mr-auto">
-              <Nav.Link>Sign In</Nav.Link>
-              <Nav.Link>Sign Up</Nav.Link>
-              <Nav.Link>Sign Out</Nav.Link>
+              <NavAuth />
             </Nav>
           </Col>
         </Row>

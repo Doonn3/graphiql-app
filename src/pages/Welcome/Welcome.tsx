@@ -1,6 +1,5 @@
 import './welcom.css';
 import Carousel from 'react-bootstrap/Carousel';
-import Footer from '../../widgets/Footer';
 
 function UncontrolledExample() {
   return (
