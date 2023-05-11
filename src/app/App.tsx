@@ -6,9 +6,10 @@ import Login from '../features/Login/Login';
 import Singup from '../features/Singup/Singup';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../shared/firebase/firebase';
-import Welcome from '@pages/Welcome/Welcome';
+import UncontrolledExample from '@pages/Welcome/Welcome';
 import Main from '@pages/Main/Main';
 import PageNotFound from '@pages/PageNotFound/PageNotFound';
+import Foooter from '@widgets/Footer';
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -24,12 +25,13 @@ function App() {
       )}
       <Header />
       <Routes>
-        <Route path="" element={<Welcome />} />
+        <Route path="" element={<UncontrolledExample />} />
         <Route path="/main" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/singup" element={<Singup />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <Foooter />
     </>
   );
 }
