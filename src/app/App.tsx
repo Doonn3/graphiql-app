@@ -1,10 +1,10 @@
-import Header from '../widgets/Header';
-import './App.css';
+import Header from '@widgets/Header/Header';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes } from 'react-router-dom';
-import Welcome from '../pages/Welcome/Welcome';
-import Main from '../pages/Main/Main';
-import PageNotFound from '../pages/PageNotFound/PageNotFound';
+import Welcome from '@pages/Welcome/Welcome';
+import Main from '@pages/Main/Main';
+import PageNotFound from '@pages/PageNotFound/PageNotFound';
 
 function App() {
   return (
