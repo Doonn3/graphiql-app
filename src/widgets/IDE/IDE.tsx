@@ -1,17 +1,10 @@
-import React, { useState } from 'react';
-import { VerticalResizePanel, HorizontalResizePanel, Layout } from '../../features/ResizePanel';
-import TextEditor from '../../features/TextEditor/TextEditor';
-import PanelTool from '../PanelTool/PanelTool';
-import ResponceView from '../../features/ResponceView/ResponceView';
 import style from './ide.module.scss';
-
-const defaultText = `
-    query {
-        countries {
-            code
-        }
-    }
-`.trim();
+import { useState } from 'react';
+import { VerticalResizePanel, HorizontalResizePanel, Layout } from '@features/ResizePanel';
+import TextEditor from '@features/TextEditor/TextEditor';
+import PanelTool from '@widgets/PanelTool/PanelTool';
+import ResponceView from '@features/ResponceView/ResponceView';
+import GraphQLEditor from '@features/GraphQLEditor';
 
 interface IIDE {
   handler: (data: string) => void;
@@ -22,15 +15,17 @@ function IDE(props: IIDE) {
   const [isVariablesActive, setVariablesActive] = useState(true);
   const [isHeadersActive, setHeadersActive] = useState(false);
 
-  const [text, setText] = useState(defaultText);
+  const [text, setText] = useState('');
 
   const handlerButtonClick = () => {
     props.handler(text);
   };
 
-  const handlerGetText = (data: string) => {
-    setText(data);
-  };
+  function handlerText(value: string) {
+    // props.handler(value);
+    console.log(value);
+    setText(value);
+  }
 
   const handlerVariablesClick = () => {
     setVariablesActive(true);
@@ -54,7 +49,7 @@ function IDE(props: IIDE) {
                     Start
                   </button>
                 </div>
-                <TextEditor defaultText={text} handler={handlerGetText} />
+                <GraphQLEditor handler={handlerText} />
               </section>
             </Layout>
             <Layout>
