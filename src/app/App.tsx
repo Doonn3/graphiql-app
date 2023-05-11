@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import UncontrolledExample from '@pages/Welcome/Welcome';
 import Main from '@pages/Main/Main';
 import PageNotFound from '@pages/PageNotFound/PageNotFound';
+import Foooter from '@widgets/Footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <Foooter />
     </>
   );
 }
