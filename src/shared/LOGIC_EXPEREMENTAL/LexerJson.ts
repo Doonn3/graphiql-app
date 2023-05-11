@@ -1,55 +1,73 @@
-// Лексический анализатор для разбиения JSON-строки на токены
-interface Token {
-  type: string;
+// Лексический анализатор для разбиения JSON-строки на
+// const jsonTest = `{
+// "data": {
+// "countries": [
+// {
+// "code": "AD"
+// },
+// ]
+// }
+// }`;
+
+const match = ['{', '}', '[', ']', ':', ','];
+
+type TokenType =
+  | 'ObjectOpen'
+  | 'ObjectClose'
+  | 'ArrayOpen'
+  | 'ArrayClose'
+  | 'Assign'
+  | 'Punctuation'
+  | 'Variable'
+  | 'Literal';
+
+export interface Token {
+  type: TokenType;
   value: string;
 }
 
 class LexerJson {
   private tokens: Token[] = [];
 
-  private currToken = '';
-
   public parse(jsonStr: string) {
+    let string = '';
     for (const char of jsonStr) {
-      if (
-        char === '{' ||
-        char === '}' ||
-        char === '[' ||
-        char === ']' ||
-        char === ':' ||
-        char === ','
-      ) {
-        if (this.currToken) {
-          this.addToken(this.currToken);
-          this.currToken = '';
+      if (match.includes(char)) {
+        if (string.trim().length > 0) {
+          string = string.trim();
+          const type = this.typeDefinition(string);
+          this.addToken(type, string);
+          string = '';
         }
-        this.tokens.push({ type: 'Punctuation', value: char });
-      } else if (char !== ' ' && char !== '\n' && char !== '\t' && char !== '\r') {
-        this.currToken += char;
+        const type = this.typeDefinition(char);
+        this.addToken(type, char);
+      } else {
+        string += char;
       }
-    }
-
-    if (this.currToken) {
-      this.addToken(this.currToken);
     }
 
     return this.tokens;
   }
 
-  private addToken(value: string) {
-    let type: string;
-    if (/^-?\d+\.?\d*$/.test(value)) {
-      type = 'Number';
-    } else if (/^"([^"\\]|\\.)*"$/.test(value)) {
-      type = 'String';
-    } else if (value === 'true' || value === 'false') {
-      type = 'Boolean';
-    } else if (value === 'null') {
-      type = 'Null';
-    } else {
-      throw new Error(`Unknown token: ${value}`);
-    }
-    this.tokens.push({ type, value });
+  private typeDefinition(value: string): TokenType | null {
+    if (value === '{') return 'ObjectOpen';
+    if (value === '}') return 'ObjectClose';
+    if (value === '[') return 'ArrayOpen';
+    if (value === ']') return 'ArrayClose';
+    if (value === ':') return 'Assign';
+    if (value === ',') return 'Punctuation';
+
+    // if (typeof Number(value) === 'number') return 'Number';
+    if (value === 'false' || value === 'true') return 'Literal';
+    // if (value === 'null') return 'Null';
+    if (typeof value === 'string') return 'Variable';
+
+    return null;
+  }
+
+  private addToken(type: TokenType | null, value: string) {
+    if (type === null) return;
+    this.tokens.push({ type: type, value });
   }
 }
 
