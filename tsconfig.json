@@ -18,6 +18,15 @@
     "noImplicitAny": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./src",
+    "paths": {
+      "@entities/*": ["entities/*"],
+      "@app/*": ["app/*"],
+      "@assets/*": ["shared/assets/*"],
+      "@shared/*": ["shared/*"],
+      "@features/*": ["features/*"],
+      "@pages/*": ["pages/*"],
+      "@widgets/*": ["widgets/*"],
+    }
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
