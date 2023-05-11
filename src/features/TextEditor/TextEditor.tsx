@@ -3,7 +3,7 @@ import style from './text-editor.module.scss';
 
 interface ITextEditor {
   defaultText?: string;
-  handler?: (data: string) => void;
+  handler?: (text: string) => void;
 }
 
 function TextEditor(props: ITextEditor) {
@@ -12,7 +12,6 @@ function TextEditor(props: ITextEditor) {
   const handlerKeyDown = (event: React.KeyboardEvent) => {
     if (props.handler === undefined) return;
     if (event.ctrlKey && event.code === 'Space') {
-      // Передача данных callback function на верхний уровень
       props.handler(value);
     }
   };
