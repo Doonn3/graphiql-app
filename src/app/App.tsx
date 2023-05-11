@@ -7,10 +7,21 @@ import Main from '../pages/Main/Main';
 import PageNotFound from '../pages/PageNotFound/PageNotFound';
 import Login from '../features/Login/Login';
 import Singup from '../features/Singup/Singup';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase/firebase';
 
 function App() {
+  const [user, loading] = useAuthState(auth);
+
   return (
     <>
+      {loading && (
+        <div className="spinner-wrapper bg-dark">
+          <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
       <Header />
       <Routes>
         <Route path="" element={<Welcome />} />

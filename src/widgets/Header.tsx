@@ -5,11 +5,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
 import NavAuth from '../features/NavAuth/NavAuth';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../firebase/firebase';
 
 function Header(): JSX.Element {
-  const authUserStatus = useSelector((state: RootState) => state.authUser);
+  const [user] = useAuthState(auth);
 
   return (
     <Navbar sticky="top" bg="dark" variant="dark">
@@ -21,7 +21,7 @@ function Header(): JSX.Element {
               <Nav.Link as={NavLink} to="/">
                 Welcom
               </Nav.Link>
-              {authUserStatus && (
+              {user && (
                 <Nav.Link as={NavLink} to="/main">
                   Main
                 </Nav.Link>

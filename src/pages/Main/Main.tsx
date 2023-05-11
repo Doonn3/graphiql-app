@@ -1,11 +1,20 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase/firebase';
 
 function Main() {
-  const authUserStatus = useSelector((state: RootState) => state.authUser);
+  const [user, loading] = useAuthState(auth);
+  const navigate = useNavigate();
 
-  return <>{authUserStatus ? <h1>MAIN</h1> : <Navigate to="/login" />}</>;
+  useEffect(() => {
+    if (loading) return;
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, loading, navigate]);
+
+  return <h1>MAIN</h1>;
 }
 
 export default Main;
