@@ -4,9 +4,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { NavLink } from 'react-router-dom';
-import NavAuth from '../features/NavAuth/NavAuth';
+import NavAuth from '../../features/NavAuth/NavAuth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../shared/firebase/firebase';
+import { auth } from '../../shared/firebase/firebase';
 
 function Header(): JSX.Element {
   const [user] = useAuthState(auth);
