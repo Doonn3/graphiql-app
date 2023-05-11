@@ -14,7 +14,7 @@ function VerticalResizePanel(props: IVerticalResizePanelProps) {
   const ownRef = useRef<HTMLDivElement>(null);
   const layoutRefs = useRef(React.Children.map(props.children, () => React.createRef<ILayout>()));
 
-  const divider = <Divider onMouseDown={ownResize.start} />;
+  const divider = <Divider onMouseDown={ownResize.start} align={'Vertical'} />;
 
   const childrenWithDividers = React.Children.map(props.children, (child, index) => {
     if (!layoutRefs.current) return child;

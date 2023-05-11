@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
+import useResizePanel from '../../hooks/useResizePanel';
+import Divider from '../Divider/Divider';
 import { ILayout } from '../Layout/Layout';
 import style from './horizontalLayout.module.scss';
 
@@ -8,38 +10,11 @@ interface ILayerProps {
 }
 
 function HorizontalResizePanel(props: ILayerProps) {
+  const ownResize = useResizePanel();
   const ownRef = useRef<HTMLDivElement>(null);
-  const refDivider = useRef<HTMLDivElement>(null);
   const layoutRefs = useRef(React.Children.map(props.children, () => React.createRef<ILayout>()));
 
-  const [isDraggable, setDragging] = useState(false);
-
-  const handlerMouseDown = (event: React.MouseEvent) => {
-    if (event.target === refDivider.current) {
-      setDragging(true);
-    }
-  };
-
-  const handlerMouseMove = (event: React.MouseEvent) => {
-    if (isDraggable === false) return;
-
-    if (!layoutRefs.current) return;
-    const layout1 = layoutRefs.current[0];
-    const height1 = layout1.current?.height as number;
-    const newHeight = height1 + event.movementY;
-    const layout2 = layoutRefs.current[1];
-    const height2 = layout2.current?.height as number;
-    const newHeight2 = height2 - event.movementY;
-
-    layout1.current?.handlerChange({ height: newHeight });
-    layout2.current?.handlerChange({ height: newHeight2 });
-  };
-
-  const handlerMouseUp = () => {
-    setDragging(false);
-  };
-
-  const divider = <div className={style.divider} ref={refDivider}></div>;
+  const divider = <Divider onMouseDown={ownResize.start} align={'Horizontal'} />;
 
   const childrenWithDividers = React.Children.map(props.children, (child, index) => {
     if (!layoutRefs.current) return child;
@@ -53,12 +28,26 @@ function HorizontalResizePanel(props: ILayerProps) {
     );
   });
 
+  useEffect(() => {
+    function resize() {
+      if (!layoutRefs.current) return;
+      const layout1 = layoutRefs.current[0];
+      const height1 = layout1.current?.height as number;
+      const newHeight = height1 + ownResize.direction.Y;
+      const layout2 = layoutRefs.current[1];
+      const height2 = layout2.current?.height as number;
+      const newHeight2 = height2 - ownResize.direction.Y;
+      layout1.current?.handlerChange({ height: newHeight });
+      layout2.current?.handlerChange({ height: newHeight2 });
+    }
+    resize();
+  }, [ownResize.direction.Y]);
+
   return (
     <div
       className={style.horizontal}
-      onMouseDown={handlerMouseDown}
-      onMouseMove={handlerMouseMove}
-      onMouseUp={handlerMouseUp}
+      onMouseMove={ownResize.move}
+      onMouseUp={ownResize.end}
       ref={ownRef}
     >
       {childrenWithDividers}
