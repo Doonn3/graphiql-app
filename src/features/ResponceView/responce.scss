@@ -4,6 +4,9 @@
 
     background-color: rgb(88, 69, 69);
     color: white;
+    overflow-y: auto;
+}
 
-    overflow: scroll;
+.cm-editor {
+    height: 100%;
 }
