@@ -1,0 +1,69 @@
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 50px;
+  height: 100%;
+  background-color: #212a3b;
+
+  transition: 1s;
+  z-index: 10;
+  &__block {
+    width: 50px;
+    height: 100%;
+    padding: 5px;
+  }
+
+  &__doc {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    transition: 0.4s;
+    cursor: pointer;
+    * {
+      width: 100%;
+      height: 100%;
+      fill: white;
+    }
+    &:hover {
+      background-color: #69799b6e;
+    }
+  }
+}
+
+// --interaction
+.sliding {
+  width: 300px;
+}
+// interfaction--
+
+.doc {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  
+  &__header {}
+
+  &__title {
+    color: white;
+  }
+
+  &__search {}
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+
+    color: white;
+  }
+}
+
+
+
+
+
+

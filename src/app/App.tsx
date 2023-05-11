@@ -1,14 +1,14 @@
-import Header from '../widgets/Header';
-import './App.css';
+import Header from '@widgets/Header/Header';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes } from 'react-router-dom';
-import Welcome from '../pages/Welcome/Welcome';
-import Main from '../pages/Main/Main';
-import PageNotFound from '../pages/PageNotFound/PageNotFound';
 import Login from '../features/Login/Login';
 import Singup from '../features/Singup/Singup';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../shared/firebase/firebase';
+import Welcome from '@pages/Welcome/Welcome';
+import Main from '@pages/Main/Main';
+import PageNotFound from '@pages/PageNotFound/PageNotFound';
 
 function App() {
   const [user, loading] = useAuthState(auth);
