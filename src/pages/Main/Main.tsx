@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import FetchApi from '../../app/FetchApi/FetchApi';
-import IDE from '../../widgets/IDE/IDE';
+import FetchApi from '@shared/FetchApi/FetchApi';
+import IDE from '@widgets/IDE/IDE';
 import './main.style.scss';
 
 function Main() {
