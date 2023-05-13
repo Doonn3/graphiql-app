@@ -5,6 +5,7 @@ import TextEditor from '@features/TextEditor/TextEditor';
 import PanelTool from '@widgets/PanelTool/PanelTool';
 import ResponceView from '@features/ResponceView/ResponceView';
 import GraphQLEditor from '@features/GraphQLEditor';
+import VariablesEditor from '@features/VariablesEditor';
 
 interface IIDE {
   handler: (data: string) => void;
@@ -58,7 +59,7 @@ function IDE(props: IIDE) {
                   <button onClick={handlerVariablesClick}>Variables</button>
                   <button onClick={handlerHeadersClick}>Headers</button>
                 </div>
-                {isVariablesActive && <TextEditor defaultText="VARIABLES" />}
+                {isVariablesActive && <VariablesEditor />}
                 {isHeadersActive && <TextEditor defaultText="HEADERS" />}
               </section>
             </Layout>
