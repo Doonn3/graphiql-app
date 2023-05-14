@@ -1,4 +1,4 @@
-import { auth, registerWithEmailAndPassword } from '../../shared/firebase/firebase';
+import { auth, registerWithEmailAndPassword } from '@shared/firebase/firebase';
 import { Form, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -78,13 +78,12 @@ function Singup() {
                 placeholder="Password"
                 {...register('password', {
                   required:
-                    'Minimum eight characters, at least one letter, one number and one special character',
-                  minLength: {
-                    value: 8,
+                    'Minimum 8 characters, at least one letter, one number and one special character',
+                  pattern: {
+                    value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
                     message:
-                      'Minimum eight characters, at least one letter, one number and one special character',
+                      'Minimum 8 characters, at least one letter, one number and one special character',
                   },
-                  // "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
                 })}
               />
               {errors.password && <span className="error">{errors.password.message}</span>}

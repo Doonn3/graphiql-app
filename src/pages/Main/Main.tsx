@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../shared/firebase/firebase';
+import { auth } from '@shared/firebase/firebase';
 import { useState } from 'react';
 import FetchApi from '@shared/FetchApi/FetchApi';
 import IDE from '@widgets/IDE/IDE';
