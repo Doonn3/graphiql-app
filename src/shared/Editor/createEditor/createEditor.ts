@@ -9,7 +9,12 @@ export type EditorViewType = EditorView;
 type SupportLang = 'json' | 'graphql';
 let lang: Extension;
 
-function createEditor(parent: HTMLElement, langSupport: SupportLang, isEditable = true) {
+function createEditor(
+  parent: HTMLElement,
+  langSupport: SupportLang,
+  isEditable = true,
+  handler?: (event: string) => void
+) {
   if (langSupport === 'json') {
     lang = json();
   } else if (langSupport === 'graphql') {
@@ -24,6 +29,14 @@ function createEditor(parent: HTMLElement, langSupport: SupportLang, isEditable 
       EditorView.editable.of(isEditable),
       lineNumbers(),
       keymap.of(defaultKeymap),
+      EditorView.updateListener.of((update) => {
+        if (update.docChanged) {
+          const value = update.state.doc.sliceString(0);
+          if (handler) {
+            handler(value);
+          }
+        }
+      }),
     ],
   });
 

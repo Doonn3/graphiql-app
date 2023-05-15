@@ -1,5 +1,6 @@
 import { ReactComponent as DocumentationIcon } from '@assets/documentation.svg';
 import { useState } from 'react';
+import DocView from '../../features/DocView/DocView';
 
 import style from './paneltool.module.scss';
 
@@ -18,23 +19,7 @@ function PanelTool() {
         </div>
       </div>
 
-      {isActiveDoc && (
-        <div className={style.doc}>
-          <div className={style.doc__header}>
-            <h3 className={style.doc__title}>Doc</h3>
-            <input className={style.doc__search} type="text" />
-          </div>
-          <div className={style.doc__info}>
-            <b>Test</b>
-            <b>Test</b>
-            <b>Test</b>
-            <b>Test</b>
-            <b>Test</b>
-            <b>Test</b>
-            <b>Test</b>
-          </div>
-        </div>
-      )}
+      {isActiveDoc && <DocView />}
     </div>
   );
 }
