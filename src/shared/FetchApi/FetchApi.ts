@@ -1,4 +1,4 @@
-import { buildClientSchema, getIntrospectionQuery, GraphQLSchema } from 'graphql';
+import { buildClientSchema, getIntrospectionQuery, GraphQLSchema, printSchema } from 'graphql';
 
 class FetchApi {
   static instance: FetchApi = new FetchApi();
@@ -22,20 +22,6 @@ class FetchApi {
 
   public async RequestIntrospection(): Promise<GraphQLSchema | null> {
     try {
-      // const res = await fetch(this.url, {
-      // method: 'POST',
-      // headers: {
-      // 'Content-Type': 'application/json',
-      // },
-      // body: JSON.stringify({ query: 'query { __schema { types { name } } }' }),
-      // });
-
-      // if (!res.ok) {
-      // throw new Error(`Network response was not ok: ${res.status}`);
-      // }
-
-      // const data = await res.json();
-
       const shemaUrl = this.url + '/graphql';
       const introspectionQuery = getIntrospectionQuery({ descriptions: false });
       const res = await fetch(shemaUrl, {
@@ -46,11 +32,9 @@ class FetchApi {
 
       const result = await res.json();
       const schema = buildClientSchema(result.data);
-      // const schema: GraphQLSchema = data;
-
       return schema;
     } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
+      console.error('There was a problem with the fetch schema:', error);
       return null;
     }
   }
