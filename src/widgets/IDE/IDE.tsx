@@ -24,7 +24,6 @@ function IDE(props: IIDE) {
 
   function handlerText(value: string) {
     // props.handler(value);
-    console.log(value);
     setText(value);
   }
 

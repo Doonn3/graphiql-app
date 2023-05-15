@@ -1,4 +1,4 @@
-import { buildClientSchema, getIntrospectionQuery, GraphQLSchema } from 'graphql';
+import { buildClientSchema, getIntrospectionQuery, GraphQLSchema, printSchema } from 'graphql';
 
 class FetchApi {
   static instance: FetchApi = new FetchApi();
@@ -32,7 +32,6 @@ class FetchApi {
 
       const result = await res.json();
       const schema = buildClientSchema(result.data);
-
       return schema;
     } catch (error) {
       console.error('There was a problem with the fetch schema:', error);
