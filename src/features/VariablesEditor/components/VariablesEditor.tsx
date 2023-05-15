@@ -20,9 +20,12 @@ function VariablesEditor(props: IVariablesEditor) {
   }, []);
 
   useEffect(() => {
+    if (ownRef.current === null) return;
+    const selection = ownRef.current.state.selection;
     if (ownRef.current) {
       ownRef.current.dispatch({
         changes: { from: 0, to: ownRef.current.state.doc.length, insert: value },
+        selection,
       });
     }
   }, [value]);
