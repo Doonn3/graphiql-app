@@ -32,6 +32,7 @@ function IDE(props: IIDE) {
     setVariablesActive(true);
     setHeadersActive(false);
   };
+
   const handlerHeadersClick = () => {
     setHeadersActive(true);
     setVariablesActive(false);
