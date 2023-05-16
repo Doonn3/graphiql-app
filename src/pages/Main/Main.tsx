@@ -11,6 +11,7 @@ function Main() {
   // TEST
   const [dataAPI, setDataAPI] = useState('');
   const [user, loading] = useAuthState(auth);
+  const [variable, setVariable] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,15 +22,19 @@ function Main() {
   }, [user, loading, navigate]);
 
   const handlerIDE = async (data: string) => {
-    const test = await FetchApi.instance.RequestQuery(data);
+    const test = await FetchApi.instance.RequestQuery(data, variable);
     const dataSTR = JSON.stringify(test, null, 2);
     setDataAPI(dataSTR);
   };
   //<<TEST
 
+  const getVariables = (value: string) => {
+    setVariable(value);
+  };
+
   return (
     <div className="main">
-      <IDE handler={handlerIDE} responce={dataAPI} />
+      <IDE handler={handlerIDE} responce={dataAPI} handlerVariables={getVariables} />
     </div>
   );
 }

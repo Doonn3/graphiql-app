@@ -10,6 +10,7 @@ import VariablesEditor from '@features/VariablesEditor';
 interface IIDE {
   handler: (data: string) => void;
   responce: string;
+  handlerVariables: (data: string) => void;
 }
 
 function IDE(props: IIDE) {
@@ -37,6 +38,10 @@ function IDE(props: IIDE) {
     setVariablesActive(false);
   };
 
+  const getVariables = (value: string) => {
+    props.handlerVariables(value);
+  };
+
   return (
     <>
       <PanelTool />
@@ -59,7 +64,7 @@ function IDE(props: IIDE) {
                   <button onClick={handlerVariablesClick}>Variables</button>
                   <button onClick={handlerHeadersClick}>Headers</button>
                 </div>
-                {isVariablesActive && <VariablesEditor />}
+                {isVariablesActive && <VariablesEditor handler={getVariables} />}
                 {isHeadersActive && <TextEditor defaultText="HEADERS" />}
               </section>
             </Layout>
