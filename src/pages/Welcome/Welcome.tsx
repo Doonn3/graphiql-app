@@ -1,23 +1,24 @@
 import './welcom.css';
 import Carousel from 'react-bootstrap/Carousel';
-import Footer from '../../widgets/Footer';
+import { useTranslation } from 'react-i18next';
 
 function UncontrolledExample() {
+  const { t, i18n } = useTranslation();
   return (
     <div className="wrap">
       <Carousel>
         <Carousel.Item>
           <Carousel.Caption>
             <div className="wrap_wel-kira">
-              <h2>Kira</h2>
+              <h2>{t('welcome.kira.name')}</h2>
               <ul>
-                <li>Job title: Developer</li>
-                <li>Сountry: Georgia</li>
-                <li>Position: ?</li>
-                <li>Description: Schrödinger developer. It seems to be, but it seems to be not.</li>
+                <li>{t('welcome.kira.job')}</li>
+                <li>{t('welcome.kira.country')}</li>
+                <li>{t('welcome.kira.position')}</li>
+                <li>{t('welcome.kira.description')}</li>
                 <li>
                   <a className="git" href="https://github.com/Kira-Vishn9">
-                    Git
+                    {t('welcome.kira.git')}
                   </a>
                 </li>
               </ul>
@@ -27,19 +28,15 @@ function UncontrolledExample() {
         <Carousel.Item>
           <Carousel.Caption>
             <div className="wrap_wel-oly">
-              <h2>Oly</h2>
+              <h2>{t('welcome.oly.name')}</h2>
               <ul>
-                <li>Job title: TeamLead</li>
-                <li>Сountry: Belarus</li>
-                <li>Position: ?</li>
-                <li>
-                  Description: The main cog in the team directing on the path and telling which
-                  <br />
-                  choose is better. Yes, and in principle a cheerful gambler.
-                </li>
+                <li>{t('welcome.oly.job')}</li>
+                <li>{t('welcome.oly.country')}</li>
+                <li>{t('welcome.oly.position')}</li>
+                <li>{t('welcome.oly.description')}</li>
                 <li>
                   <a className="git" href="https://github.com/tizary">
-                    Git
+                    {t('welcome.oly.git')}
                   </a>
                 </li>
               </ul>
@@ -49,18 +46,15 @@ function UncontrolledExample() {
         <Carousel.Item>
           <Carousel.Caption>
             <div className="wrap_wel-koly">
-              <h2>Nikoly</h2>
+              <h2>{t('welcome.nikoly.name')}</h2>
               <ul>
-                <li>Job title: Developer</li>
-                <li>Сountry: Russia</li>
-                <li>Position: ?</li>
-                <li>
-                  Description: An interesting guy with a clear vision of a clear path <br /> to the
-                  operates with facts and documentation.
-                </li>
+                <li>{t('welcome.nikoly.job')}</li>
+                <li>{t('welcome.nikoly.country')}</li>
+                <li>{t('welcome.nikoly.position')}</li>
+                <li>{t('welcome.nikoly.description')}</li>
                 <li>
                   <a className="git" href="https://github.com/Doonn3">
-                    Git
+                    {t('welcome.nikoly.git')}
                   </a>
                 </li>
               </ul>

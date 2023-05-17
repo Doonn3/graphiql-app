@@ -1,0 +1,57 @@
+{
+  "welcome": {
+    "kira":{
+     "name": "Kira",
+     "job": "Job titile: developer",
+     "country": "Сountry: Georgia",
+     "position": "Position: 374",
+     "description": "Description: Schrödinger developer. It seems to be, but it seems to be not.",
+     "git": "Git"
+    },
+    "oly":{
+      "name": "Oly",
+      "job": "Job titile: developer",
+      "country": "Сountry: Belarus",
+      "position": "Position: 376",
+      "description": "Description: The main cog in the team directing on the path and telling which choose is better. Yes, and in principle a cheerful gambler.",
+      "git": "Git"
+     },
+     "nikoly":{
+      "name": "Nikoly",
+      "job": "Job titile: TeamLead",
+      "country": "Сountry: Russia",
+      "position": "Position: 326",
+      "description": "Description: An interesting guy with a clear vision of a clear path to the operates with facts and documentation.",
+      "git": "Git"
+     }
+  },
+  "footer": {
+    "social": "Get connected with us on social networks:",
+    "survivors": "Survivors",
+    "grapgQl": "Working with GraphQL.",
+    "products": "Products",
+    "links": "Useful links",
+    "Pricing": "Pricing",
+    "Settings": "Settings",
+    "Orders": "Orders",
+    "Help": "Help",
+    "Contact": "Contact",
+    "Сountry": "Belarus, Russia, Georgia",
+    "Copyright": "© 2023 Copyright:",
+    "Project": "Project Github"
+  },
+  "header": {
+    "title": "Graphi-Ql",
+    "welcom": "Welcom",
+    "main": "Main",
+    "SI": "Sing In",
+    "SU": "Sing Up",
+    "SO": "Sing Out"
+  },
+  "lang": {
+    "lang": "Lang",
+    "en": "En",
+    "ru": "Ru"
+  }
+  
+}

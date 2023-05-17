@@ -6,6 +6,7 @@ import UncontrolledExample from '@pages/Welcome/Welcome';
 import Main from '@pages/Main/Main';
 import PageNotFound from '@pages/PageNotFound/PageNotFound';
 import Foooter from '@widgets/Footer';
+import { Suspense } from 'react';
 
 function App() {
   return (
@@ -21,4 +22,10 @@ function App() {
   );
 }
 
-export default App;
+export default function WrappedApp() {
+  return (
+    <Suspense fallback="...loading">
+      <App />
+    </Suspense>
+  );
+}
