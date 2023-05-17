@@ -8,6 +8,9 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import i18n from '@app/i18n';
 import { useTranslation } from 'react-i18next';
+import NavAuth from '../../features/NavAuth/NavAuth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../shared/firebase/firebase';
 
 type Locale = {
   title: string;
@@ -36,6 +39,7 @@ function ChangeLang() {
 }
 
 function Header(): JSX.Element {
+  const [user] = useAuthState(auth);
   const { t, i18n } = useTranslation();
   return (
     <Navbar sticky="top" bg="dark" variant="dark">
@@ -47,15 +51,15 @@ function Header(): JSX.Element {
               <Nav.Link as={NavLink} to="/">
                 {t('header.welcom')}
               </Nav.Link>
-              <Nav.Link as={NavLink} to="/main">
-                {t('header.main')}
-              </Nav.Link>
+              {user && (
+                <Nav.Link as={NavLink} to="/main">
+                  {t('header.main')}
+                </Nav.Link>
+              )}
             </Nav>
             <ChangeLang />
             <Nav className="mr-auto">
-              <Nav.Link>{t('header.SI')}</Nav.Link>
-              <Nav.Link>{t('header.SU')}</Nav.Link>
-              <Nav.Link>{t('header.SO')}</Nav.Link>
+              <NavAuth />
             </Nav>
           </Col>
         </Row>

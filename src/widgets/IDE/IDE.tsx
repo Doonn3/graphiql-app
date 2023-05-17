@@ -5,10 +5,12 @@ import TextEditor from '@features/TextEditor/TextEditor';
 import PanelTool from '@widgets/PanelTool/PanelTool';
 import ResponceView from '@features/ResponceView/ResponceView';
 import GraphQLEditor from '@features/GraphQLEditor';
+import VariablesEditor from '@features/VariablesEditor';
 
 interface IIDE {
   handler: (data: string) => void;
   responce: string;
+  handlerVariables: (data: string) => void;
 }
 
 function IDE(props: IIDE) {
@@ -23,7 +25,6 @@ function IDE(props: IIDE) {
 
   function handlerText(value: string) {
     // props.handler(value);
-    console.log(value);
     setText(value);
   }
 
@@ -31,9 +32,14 @@ function IDE(props: IIDE) {
     setVariablesActive(true);
     setHeadersActive(false);
   };
+
   const handlerHeadersClick = () => {
     setHeadersActive(true);
     setVariablesActive(false);
+  };
+
+  const getVariables = (value: string) => {
+    props.handlerVariables(value);
   };
 
   return (
@@ -58,7 +64,7 @@ function IDE(props: IIDE) {
                   <button onClick={handlerVariablesClick}>Variables</button>
                   <button onClick={handlerHeadersClick}>Headers</button>
                 </div>
-                {isVariablesActive && <TextEditor defaultText="VARIABLES" />}
+                {isVariablesActive && <VariablesEditor handler={getVariables} />}
                 {isHeadersActive && <TextEditor defaultText="HEADERS" />}
               </section>
             </Layout>
