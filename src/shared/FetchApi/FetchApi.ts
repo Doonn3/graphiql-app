@@ -4,7 +4,11 @@ class FetchApi {
   static instance: FetchApi = new FetchApi();
   private readonly url = 'https://countries.trevorblades.com';
 
-  public async RequestQuery(queryText: string): Promise<object> {
+  public async RequestQuery(queryText: string, variable: string): Promise<object> {
+    let variableValue = {};
+    if (variable) {
+      variableValue = JSON.parse(variable);
+    }
     const res = await fetch(this.url, {
       method: 'POST',
       headers: {
@@ -12,6 +16,7 @@ class FetchApi {
       },
       body: JSON.stringify({
         query: queryText,
+        variables: variableValue,
       }),
     });
 

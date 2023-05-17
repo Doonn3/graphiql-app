@@ -12,7 +12,7 @@ import PageNotFound from '@pages/PageNotFound/PageNotFound';
 import Foooter from '@widgets/Footer';
 
 function App() {
-  const [user, loading] = useAuthState(auth);
+  const [, loading] = useAuthState(auth);
 
   return (
     <>

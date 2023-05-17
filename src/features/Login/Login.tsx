@@ -1,4 +1,4 @@
-import { auth, logInWithEmailAndPassword } from '../../shared/firebase/firebase';
+import { auth, logInWithEmailAndPassword } from '@shared/firebase/firebase';
 import { Form, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
