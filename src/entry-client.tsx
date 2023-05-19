@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import App from './app/App';
 import { store } from './shared/store/store';
+import './app/i18n';
 
 const root: HTMLElement = document.getElementById('root') as HTMLElement;
 

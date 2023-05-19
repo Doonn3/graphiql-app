@@ -2,9 +2,11 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { Nav } from 'react-bootstrap';
 import { auth, logout } from '@shared/firebase/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTranslation } from 'react-i18next';
 
 function NavAuth() {
   const [user] = useAuthState(auth);
+  const { t, i18n } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -16,14 +18,14 @@ function NavAuth() {
   return (
     <>
       {user ? (
-        <Nav.Link onClick={logoutUser}>Sign Out</Nav.Link>
+        <Nav.Link onClick={logoutUser}>{t('header.SO')}</Nav.Link>
       ) : (
         <>
           <Nav.Link as={NavLink} to="/login">
-            Sign In
+            {t('header.SI')}
           </Nav.Link>
           <Nav.Link as={NavLink} to="/singup">
-            Sign Up
+            {t('header.SU')}
           </Nav.Link>
         </>
       )}

@@ -1,8 +1,17 @@
 li{
     list-style: none;
+    width: 50%;
 }
 p{
     width: 80%;
+}
+a{
+    color: aliceblue;
+    text-decoration: none;
+    cursor: pointer;
+}
+ul{
+    text-align: -webkit-center;
 }
 .wrap{
     width: 80%;
@@ -12,7 +21,7 @@ p{
     border: 0px solid;
     border-radius: 25px;
     top: 60px;
-    background-color: rgba(16, 12, 12, 0.3);
+    background-color: rgba(33,37,41, 1);
     margin-bottom: 100px;
 }
 .carousel-indicators{
@@ -31,3 +40,4 @@ p{
     right: 0;
     position: relative;
 }
+
