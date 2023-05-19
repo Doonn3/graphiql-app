@@ -6,32 +6,7 @@ export default function Footer() {
   const { t, i18n } = useTranslation();
   return (
     <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
-      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-        <div className="me-5 d-none d-lg-block">
-          <span>{t('footer.social')}</span>
-        </div>
-
-        <div>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="facebook-f" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="twitter" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="google" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="instagram" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="linkedin" />
-          </a>
-          <a href="" className="me-4 text-reset">
-            <MDBIcon fab icon="github" />
-          </a>
-        </div>
-      </section>
+      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"></section>
 
       <section className="">
         <MDBContainer className="text-center text-md-start mt-5">
@@ -48,22 +23,17 @@ export default function Footer() {
               <h6 className="text-uppercase fw-bold mb-4">{t('footer.products')}</h6>
               <p>
                 <a href="#!" className="text-reset">
-                  Angular
+                  {t('welcome.kira.name')}
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-reset">
-                  React
+                  {t('welcome.oly.name')}
                 </a>
               </p>
               <p>
                 <a href="#!" className="text-reset">
-                  Vue
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  Laravel
+                  {t('welcome.nikoly.name')}
                 </a>
               </p>
             </MDBCol>
@@ -71,23 +41,18 @@ export default function Footer() {
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-4">
               <h6 className="text-uppercase fw-bold mb-4">{t('footer.links')}</h6>
               <p>
-                <a href="#!" className="text-reset">
-                  {t('footer.Pricing')}
+                <a href="https://github.com/Kira-Vishn9" className="text-reset">
+                  {t('welcome.nikoly.git')}
                 </a>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  {t('footer.Settings')}
+                <a href="https://github.com/tizary" className="text-reset">
+                  {t('welcome.nikoly.git')}
                 </a>
               </p>
               <p>
-                <a href="#!" className="text-reset">
-                  {t('footer.Orders')}
-                </a>
-              </p>
-              <p>
-                <a href="#!" className="text-reset">
-                  {t('footer.Help')}
+                <a href="https://github.com/Doonn3" className="text-reset">
+                  {t('welcome.nikoly.git')}
                 </a>
               </p>
             </MDBCol>
@@ -95,18 +60,15 @@ export default function Footer() {
             <MDBCol md="4" lg="3" xl="3" className="mx-auto mb-md-0 mb-4">
               <h6 className="text-uppercase fw-bold mb-4">{t('footer.Contact')}</h6>
               <p>
-                <MDBIcon icon="home" className="me-2" />
-                {t('footer.Сountry')}
-              </p>
-              <p>
-                <MDBIcon icon="envelope" className="me-3" />
+                <MDBIcon icon="home" className="me-3" />
                 Kvishn9@gmail.com
               </p>
               <p>
-                <MDBIcon icon="phone" className="me-3" /> Tizary@mail.ru
+                <MDBIcon icon="envelope" className="me-3" />
+                Tizary@mail.ru
               </p>
               <p>
-                <MDBIcon icon="print" className="me-3" /> + 99 55 711 15 37 9
+                <MDBIcon icon="phone" className="me-3" /> Doonn3@mail.ru
               </p>
             </MDBCol>
           </MDBRow>

@@ -29,8 +29,8 @@
     "social": "Get connected with us on social networks:",
     "survivors": "Survivors",
     "grapgQl": "Working with GraphQL.",
-    "products": "Products",
-    "links": "Useful links",
+    "products": "Members",
+    "links": "Git links",
     "Pricing": "Pricing",
     "Settings": "Settings",
     "Orders": "Orders",
@@ -52,6 +52,17 @@
     "lang": "Lang",
     "en": "En",
     "ru": "Ru"
-  }
+  },
+  "singUp": {
+    "psu": "Please Sign up",
+    "fl": "Full Name",
+    "ea": "Email address",
+    "ps": "Password"
+  },
+  "placeholder": {
+    "ee": "Enter email",
+    "ps": "Password"
+  },
+  "fn": "Enter your first and last name" 
   
 }
