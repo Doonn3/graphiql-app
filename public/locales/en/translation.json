@@ -61,8 +61,14 @@
   },
   "placeholder": {
     "ee": "Enter email",
-    "ps": "Password"
+    "ps": "Password",
+    "fn": "Enter your first and last name"
   },
-  "fn": "Enter your first and last name" 
+  "error": {
+    "iea": "Invalid email address",
+    "ep": "Minimum eight characters, at least one letter, one number and one special character",
+    "fn": "Enter more then 3 symbols"
+  }
+   
   
 }

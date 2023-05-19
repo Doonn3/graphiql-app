@@ -47,7 +47,7 @@ function Singup() {
                 type="text"
                 placeholder={t('placeholder.fn').toString()}
                 {...register('name', {
-                  required: 'Enter more then 3 symbols',
+                  required: t('error.fn').toString(),
                   minLength: {
                     value: 3,
                     message: 'Enter more then 3 symbols',
@@ -63,10 +63,10 @@ function Singup() {
                 type="email"
                 placeholder={t('placeholder.ee').toString()}
                 {...register('email', {
-                  required: 'Invalid email address',
+                  required: t('error.iea').toString(),
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address',
+                    message: t('error.iea').toString(),
                   },
                 })}
               />
@@ -79,8 +79,7 @@ function Singup() {
                 type="password"
                 placeholder={t('placeholder.ps').toString()}
                 {...register('password', {
-                  required:
-                    'Minimum 8 characters, at least one letter, one number and one special character',
+                  required: t('error.ep').toString(),
                   pattern: {
                     value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
                     message:
