@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useTranslation } from 'react-i18next';
 
 interface SingupData {
   name: string;
@@ -19,6 +20,7 @@ function Singup() {
   } = useForm<SingupData>();
 
   const [user, loading] = useAuthState(auth);
+  const { t, i18n } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -38,14 +40,14 @@ function Singup() {
       <Container className="min-vh-100 d-flex justify-content-center align-items-center">
         <div className="w-50 p-5 border rounded ">
           <Form onSubmit={handleSubmit(singUp)}>
-            <h1 className="h3 mb-3 text-center">Please Sign up</h1>
+            <h1 className="h3 mb-3 text-center">{t('singUp.psu')}</h1>
             <Form.Group className="mb-3">
-              <Form.Label>Full Name</Form.Label>
+              <Form.Label>{t('singUp.fl')}</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter your First Name and Last Name"
+                placeholder={t('placeholder.fn').toString()}
                 {...register('name', {
-                  required: 'Enter more then 3 symbols',
+                  required: t('error.fn').toString(),
                   minLength: {
                     value: 3,
                     message: 'Enter more then 3 symbols',
@@ -56,15 +58,15 @@ function Singup() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>{t('singUp.ea')}</Form.Label>
               <Form.Control
                 type="email"
-                placeholder="Enter email"
+                placeholder={t('placeholder.ee').toString()}
                 {...register('email', {
-                  required: 'Invalid email address',
+                  required: t('error.iea').toString(),
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Invalid email address',
+                    message: t('error.iea').toString(),
                   },
                 })}
               />
@@ -72,13 +74,12 @@ function Singup() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>{t('singUp.ps')}</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Password"
+                placeholder={t('placeholder.ps').toString()}
                 {...register('password', {
-                  required:
-                    'Minimum 8 characters, at least one letter, one number and one special character',
+                  required: t('error.ep').toString(),
                   pattern: {
                     value: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
                     message:
@@ -89,7 +90,7 @@ function Singup() {
               {errors.password && <span className="error">{errors.password.message}</span>}
             </Form.Group>
             <Button variant="dark" type="submit">
-              Sing Up
+              {t('header.SU')}
             </Button>
           </Form>
         </div>
