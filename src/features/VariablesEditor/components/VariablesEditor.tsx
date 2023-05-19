@@ -37,7 +37,6 @@ function VariablesEditor(props: IVariablesEditor) {
 
   const handlerEditor = (event: string) => {
     dispatch(setText(event));
-    if (props.handler) props.handler(event);
   };
 
   return <div className={style.editor} ref={ref}></div>;

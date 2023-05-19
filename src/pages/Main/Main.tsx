@@ -6,13 +6,15 @@ import { useState } from 'react';
 import FetchApi from '@shared/FetchApi/FetchApi';
 import IDE from '@widgets/IDE/IDE';
 import './main.style.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '@shared/store/store';
 
 function Main() {
   // TEST
   const [dataAPI, setDataAPI] = useState('');
   const [user, loading] = useAuthState(auth);
-  const [variable, setVariable] = useState('');
   const navigate = useNavigate();
+  const variable = useSelector((state: RootState) => state.ide.text);
 
   useEffect(() => {
     if (loading) return;
@@ -28,13 +30,9 @@ function Main() {
   };
   //<<TEST
 
-  const getVariables = (value: string) => {
-    setVariable(value);
-  };
-
   return (
     <div className="main">
-      <IDE handler={handlerIDE} responce={dataAPI} handlerVariables={getVariables} />
+      <IDE handler={handlerIDE} responce={dataAPI} />
     </div>
   );
 }
