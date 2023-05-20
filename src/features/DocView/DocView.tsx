@@ -1,12 +1,73 @@
+import {
+  GraphQLArgument,
+  GraphQLField,
+  GraphQLFieldMap,
+  GraphQLNonNull,
+  GraphQLObjectType,
+} from 'graphql';
+import { Maybe } from 'graphql/jsutils/Maybe';
+import { ObjMap } from 'graphql/jsutils/ObjMap';
 import React, { useState } from 'react';
 import FetchApi from '../../shared/FetchApi/FetchApi';
 import style from './doc-view.module.scss';
+
+interface IArgsType {
+  name: string;
+  description: string;
+}
+
+interface INodeArgs {
+  name: string;
+  description: string;
+  type: IArgsType;
+}
+
+interface INodeFields {
+  name: string;
+  args: [];
+  description: string;
+  type: IArgsType;
+}
+
+interface IDocNode<T, S, A> {
+  name: string;
+  args: INodeArgs[];
+  type: INodeFields;
+}
+
+class DocNode {
+  // private root: GraphQLFieldMap<object, object>;
+
+  private node: GraphQLField<object, object>;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  constructor(node: GraphQLField<object, object>) {
+    this.node = node;
+    console.log(node, '<<<NODE');
+  }
+}
+
+type DocInfoType = { [key: string]: string };
+
+function parseDocs(schemaQueryType: Maybe<GraphQLObjectType>) {
+  // console.log(schemaQueryType, 'QUERY');
+  // console.log(schemaQueryType?.getFields(), 'FIELDS');
+  const content = schemaQueryType?.getFields();
+  if (content === undefined) return;
+  const f = content.continent;
+
+  const docNode = new DocNode(f);
+  // let docInfo: DocInfoType = null;
+  // if (schemaQueryType?.name)
+}
 
 async function test() {
   const testGetSchema = await FetchApi.instance.RequestIntrospection();
 
   const queryType = testGetSchema?.getQueryType();
-
+  parseDocs(queryType);
+  // console.log(queryType, 'QUERY');
+  // console.log(queryType?.getFields(), 'FIELDS');
   return testGetSchema?.getTypeMap();
 }
 
