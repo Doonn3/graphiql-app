@@ -4,8 +4,8 @@ import { VerticalResizePanel, HorizontalResizePanel, Layout } from '@features/Re
 import TextEditor from '@features/TextEditor/TextEditor';
 import PanelTool from '@widgets/PanelTool/PanelTool';
 import ResponceView from '@features/ResponceView/ResponceView';
-import GraphQLEditor from '@features/GraphQLEditor';
-import VariablesEditor from '@features/VariablesEditor';
+import GraphQLEditor from './components/GraphQLEditor';
+import VariablesEditor from './components/VariablesEditor';
 import { useSelector } from 'react-redux';
 import { RootState } from '@shared/store/store';
 
