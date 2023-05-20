@@ -11,13 +11,14 @@ import { useCallback, useRef } from 'react';
 import FetchApi from '@shared/FetchApi/FetchApi';
 import 'codemirror/theme/monokai.css';
 import style from '../style/text-editor.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@shared/store/store';
+import { setQueryValue } from '@shared/store/textEditorSlice';
 
-interface IGraphQLEditor {
-  handler?: (value: string) => void;
-}
-
-const GraphQLEditor = (props: IGraphQLEditor) => {
+const GraphQLEditor = () => {
   const editorRef = useRef<CodeMirror.EditorFromTextArea | null>(null);
+  const queryValue = useSelector((state: RootState) => state.ide.queryValue);
+  const dispatch = useDispatch();
 
   const textAreaRef = useCallback(
     async (node: HTMLTextAreaElement) => {
@@ -47,18 +48,17 @@ const GraphQLEditor = (props: IGraphQLEditor) => {
           extraKeys: { 'Ctrl-Space': 'autocomplete' },
         });
 
-        editorRef.current.on('inputRead', function (event) {
-          if (props.handler === undefined) return;
-          props.handler(event.getValue());
+        editorRef.current.on('change', function (event) {
+          dispatch(setQueryValue(event.getValue()));
         });
       }
     },
-    [props]
+    [dispatch]
   );
 
   return (
     <div className={style.editor}>
-      <textarea className={style.CodeMirror} ref={textAreaRef} disabled={true} />
+      <textarea className={style.CodeMirror} ref={textAreaRef} value={queryValue} disabled={true} />
     </div>
   );
 };

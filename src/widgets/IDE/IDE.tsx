@@ -4,29 +4,25 @@ import { VerticalResizePanel, HorizontalResizePanel, Layout } from '@features/Re
 import TextEditor from '@features/TextEditor/TextEditor';
 import PanelTool from '@widgets/PanelTool/PanelTool';
 import ResponceView from '@features/ResponceView/ResponceView';
-import GraphQLEditor from '@features/GraphQLEditor';
-import VariablesEditor from '@features/VariablesEditor';
+import GraphQLEditor from './components/GraphQLEditor';
+import VariablesEditor from './components/VariablesEditor';
+import { useSelector } from 'react-redux';
+import { RootState } from '@shared/store/store';
 
 interface IIDE {
   handler: (data: string) => void;
   responce: string;
-  handlerVariables: (data: string) => void;
 }
 
 function IDE(props: IIDE) {
   const [isVariablesActive, setVariablesActive] = useState(true);
   const [isHeadersActive, setHeadersActive] = useState(false);
 
-  const [text, setText] = useState('');
+  const queryValue = useSelector((state: RootState) => state.ide.queryValue);
 
   const handlerButtonClick = () => {
-    props.handler(text);
+    props.handler(queryValue);
   };
-
-  function handlerText(value: string) {
-    // props.handler(value);
-    setText(value);
-  }
 
   const handlerVariablesClick = () => {
     setVariablesActive(true);
@@ -36,10 +32,6 @@ function IDE(props: IIDE) {
   const handlerHeadersClick = () => {
     setHeadersActive(true);
     setVariablesActive(false);
-  };
-
-  const getVariables = (value: string) => {
-    props.handlerVariables(value);
   };
 
   return (
@@ -55,7 +47,7 @@ function IDE(props: IIDE) {
                     Start
                   </button>
                 </div>
-                <GraphQLEditor handler={handlerText} />
+                <GraphQLEditor />
               </section>
             </Layout>
             <Layout>
@@ -64,7 +56,7 @@ function IDE(props: IIDE) {
                   <button onClick={handlerVariablesClick}>Variables</button>
                   <button onClick={handlerHeadersClick}>Headers</button>
                 </div>
-                {isVariablesActive && <VariablesEditor handler={getVariables} />}
+                {isVariablesActive && <VariablesEditor />}
                 {isHeadersActive && <TextEditor defaultText="HEADERS" />}
               </section>
             </Layout>
