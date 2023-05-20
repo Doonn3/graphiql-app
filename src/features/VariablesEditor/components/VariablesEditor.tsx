@@ -3,15 +3,11 @@ import { useCallback, useEffect, useRef } from 'react';
 import style from '../style/variables-editor.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@shared/store/store';
-import { setText } from '@widgets/IDE/slice/textEditorSlice';
+import { setText } from '@shared/store/textEditorSlice';
 
 type HandlerType = (value: string) => void;
 
-interface IVariablesEditor {
-  handler?: HandlerType;
-}
-
-function VariablesEditor(props: IVariablesEditor) {
+function VariablesEditor() {
   const ownRef = useRef<EditorViewType | null>(null);
 
   const inputValue = useSelector((state: RootState) => state.ide.text);

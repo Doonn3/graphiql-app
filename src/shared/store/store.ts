@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import textEditorSlice from '@widgets/IDE/slice/textEditorSlice';
+import textEditorSlice from '@shared/store/textEditorSlice';
 
 export const store = configureStore({
   reducer: {
