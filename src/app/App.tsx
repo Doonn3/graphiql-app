@@ -9,7 +9,7 @@ import { auth } from '../shared/firebase/firebase';
 import UncontrolledExample from '@pages/Welcome/Welcome';
 import Main from '@pages/Main/Main';
 import PageNotFound from '@pages/PageNotFound/PageNotFound';
-import Foooter from '@widgets/Footer';
+import Foooter from '@widgets/Footer/Footer';
 import { Suspense } from 'react';
 
 function App() {
@@ -17,22 +17,24 @@ function App() {
 
   return (
     <>
-      {loading && (
-        <div className="spinner-wrapper bg-dark">
-          <div className="spinner-border text-light" role="status">
-            <span className="visually-hidden">Loading...</span>
+      <div className="wrapper">
+        {loading && (
+          <div className="spinner-wrapper bg-dark">
+            <div className="spinner-border text-light" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
           </div>
-        </div>
-      )}
-      <Header />
-      <Routes>
-        <Route path="" element={<UncontrolledExample />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/singup" element={<Singup />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Routes>
-      <Foooter />
+        )}
+        <Header />
+        <Routes>
+          <Route path="" element={<UncontrolledExample />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/singup" element={<Singup />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        <Foooter />
+      </div>
     </>
   );
 }

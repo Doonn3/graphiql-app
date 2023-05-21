@@ -1,4 +1,5 @@
 import style from './ide.module.scss';
+import './ide.scss';
 import { useState } from 'react';
 import { VerticalResizePanel, HorizontalResizePanel, Layout } from '@features/ResizePanel';
 import TextEditor from '@features/TextEditor/TextEditor';
@@ -18,6 +19,8 @@ function IDE(props: IIDE) {
   const [isVariablesActive, setVariablesActive] = useState(true);
   const [isHeadersActive, setHeadersActive] = useState(false);
 
+  const toggleActive = isVariablesActive ? 'active' : null;
+  const toggleActiveHeader = isHeadersActive ? 'active' : null;
   const queryValue = useSelector((state: RootState) => state.ide.queryValue);
 
   const handlerButtonClick = () => {
@@ -43,7 +46,7 @@ function IDE(props: IIDE) {
             <Layout>
               <section className={style.ide}>
                 <div className={style.header}>
-                  <button className={style.btn} onClick={handlerButtonClick}>
+                  <button className="btn-start btn btn-secondary" onClick={handlerButtonClick}>
                     Start
                   </button>
                 </div>
@@ -53,8 +56,18 @@ function IDE(props: IIDE) {
             <Layout>
               <section className={style.ide}>
                 <div className={style.header}>
-                  <button onClick={handlerVariablesClick}>Variables</button>
-                  <button onClick={handlerHeadersClick}>Headers</button>
+                  <button
+                    className={`btn btn-secondary me-3 ${toggleActive}`}
+                    onClick={handlerVariablesClick}
+                  >
+                    Variables
+                  </button>
+                  <button
+                    className={`btn btn-secondary ${toggleActiveHeader}`}
+                    onClick={handlerHeadersClick}
+                  >
+                    Headers
+                  </button>
                 </div>
                 {isVariablesActive && <VariablesEditor />}
                 {isHeadersActive && <TextEditor defaultText="HEADERS" />}

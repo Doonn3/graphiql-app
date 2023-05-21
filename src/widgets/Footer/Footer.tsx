@@ -5,9 +5,7 @@ import { useTranslation } from 'react-i18next';
 export default function Footer() {
   const { t, i18n } = useTranslation();
   return (
-    <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
-      <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"></section>
-
+    <MDBFooter bgColor="light" className="footer text-center text-lg-start text-muted">
       <section className="">
         <MDBContainer className="text-center text-md-start mt-5">
           <MDBRow className="mt-3">
