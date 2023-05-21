@@ -1,3 +1,4 @@
+import './header.scss';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -11,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import NavAuth from '../../features/NavAuth/NavAuth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../shared/firebase/firebase';
+import { useEffect, useState } from 'react';
 
 type Locale = {
   title: string;
@@ -41,8 +43,24 @@ function ChangeLang() {
 function Header(): JSX.Element {
   const [user] = useAuthState(auth);
   const { t, i18n } = useTranslation();
+  const [color, setColor] = useState('dark');
+
+  useEffect(() => {
+    document.addEventListener('scroll', scrollHandler);
+    return function () {
+      document.removeEventListener('scroll', scrollHandler);
+    };
+  }, []);
+
+  function scrollHandler() {
+    if (window.pageYOffset > 0) {
+      setColor('secondary');
+    } else {
+      setColor('dark');
+    }
+  }
   return (
-    <Navbar sticky="top" bg="dark" variant="dark">
+    <Navbar className="sticky-header" bg={color} variant={color}>
       <Container>
         <Row className="w-100">
           <Col md={12} className="d-flex">
