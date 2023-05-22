@@ -29,3 +29,41 @@ body {
   width: 4rem !important;
   height: 4rem !important;
 }
+.singup{
+  margin-top: 70px;
+}
+.footer{
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80p;
+}
+@media (max-width: 1400px) {
+ .footer{
+  height: 30vh;
+ } 
+}
+@media (max-width: 1300px) {
+  .footer{
+   height: 25vh;
+  }
+ }
+ @media (max-width: 800px) {
+  .footer{
+   height: 20vh;
+  }
+  .mt-3{
+    text-align: -webkit-center;
+  }
+ }
+ @media (max-width: 600px) {
+  .singup{
+    font-size: 10px;
+    .w-50{
+      width: 100%!important;
+    }
+  }
+  .form-control{
+    font-size: 0.7rem!important;
+  }
+ }

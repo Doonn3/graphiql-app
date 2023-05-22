@@ -40,4 +40,12 @@ ul{
     right: 0;
     position: relative;
 }
+@media (max-width: 800px) {
+    .carousel-caption{
+        height: 60vh;
+    }
+    ol, ul{
+        padding-left: 0rem;
+    }
+}
 
