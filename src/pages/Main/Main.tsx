@@ -8,6 +8,7 @@ import IDE from '@widgets/IDE/IDE';
 import './main.style.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '@shared/store/store';
+import ModalError from '@widgets/Modal/ModalError';
 
 function Main() {
   // TEST
@@ -31,9 +32,12 @@ function Main() {
   //<<TEST
 
   return (
-    <div className="main">
-      <IDE handler={handlerIDE} responce={dataAPI} />
-    </div>
+    <>
+      <div className="main">
+        <IDE handler={handlerIDE} responce={dataAPI} />
+      </div>
+      <ModalError />
+    </>
   );
 }
 

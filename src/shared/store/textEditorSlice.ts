@@ -2,11 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 interface TextEditorText {
   text: string;
   queryValue: string;
+  showModal: boolean;
 }
 
 const initialState: TextEditorText = {
   text: '',
   queryValue: '',
+  showModal: false,
 };
 
 const textEditorSlice = createSlice({
@@ -19,8 +21,11 @@ const textEditorSlice = createSlice({
     setQueryValue(state, action) {
       state.queryValue = action.payload;
     },
+    changeShowModal(state, action) {
+      state.showModal = action.payload;
+    },
   },
 });
 
-export const { setText, setQueryValue } = textEditorSlice.actions;
+export const { setText, setQueryValue, changeShowModal } = textEditorSlice.actions;
 export default textEditorSlice.reducer;
