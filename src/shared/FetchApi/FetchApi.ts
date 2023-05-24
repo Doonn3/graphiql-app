@@ -39,7 +39,12 @@ class FetchApi {
       const schema = buildClientSchema(result.data);
       return schema;
     } catch (error) {
-      console.error('There was a problem with the fetch schema:', error);
+      let errorMessage = 'There was a problem with the fetch: ';
+      if (error instanceof Error) {
+        errorMessage += error.message;
+        alert(errorMessage);
+      }
+      // console.error('There was a problem with the fetch schema:', error);
       return null;
     }
   }
