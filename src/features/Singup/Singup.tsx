@@ -20,7 +20,7 @@ function Singup() {
   } = useForm<SingupData>();
 
   const [user, loading] = useAuthState(auth);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 

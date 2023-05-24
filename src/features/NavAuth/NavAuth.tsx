@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 function NavAuth() {
   const [user] = useAuthState(auth);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 

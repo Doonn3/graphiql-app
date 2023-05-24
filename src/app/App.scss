@@ -38,6 +38,9 @@ body {
   width: 100%;
   height: 80p;
 }
+.logo{
+  max-width: 125px;
+}
 @media (max-width: 1400px) {
  .footer{
   height: 30vh;
@@ -57,13 +60,28 @@ body {
   }
  }
  @media (max-width: 600px) {
+  .navbar-brand{
+    margin-right: 0!important;
+  }
   .singup{
     font-size: 10px;
     .w-50{
       width: 100%!important;
     }
+    .headerl{
+      margin: 0 auto;
+    }
   }
   .form-control{
     font-size: 0.7rem!important;
   }
+  .d-flex{
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .me-auto{
+      margin-right: 0!important;
+    }
+  }
+  
  }

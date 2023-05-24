@@ -13,7 +13,7 @@ interface LoginData {
 }
 
 function Login() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [err, setErr] = useState('');
   const {
     register,

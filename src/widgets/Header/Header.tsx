@@ -26,9 +26,9 @@ const locales: Locales = {
 };
 
 function ChangeLang() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
-    <DropdownButton id="dropdown-basic-button" title={t('lang.lang')}>
+    <DropdownButton id="dropdown-basic-button" title={t('lang.' + i18n.language)}>
       {Object.keys(locales).map((locale) => (
         <Dropdown.Item href="#/" key={locale} onClick={() => i18n.changeLanguage(locale)}>
           {t('lang.' + locales[locale].title)}
@@ -40,12 +40,12 @@ function ChangeLang() {
 
 function Header(): JSX.Element {
   const [user] = useAuthState(auth);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <Navbar sticky="top" bg="dark" variant="dark">
-      <Container>
+      <Container className="justify-content-center">
         <Row className="w-100">
-          <Col md={12} className="d-flex">
+          <Col md={12} className="headerl d-flex">
             <Navbar.Brand>{t('header.title')}</Navbar.Brand>
             <Nav className="me-auto">
               <Nav.Link as={NavLink} to="/">
