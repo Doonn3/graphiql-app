@@ -60,7 +60,7 @@ function Header(): JSX.Element {
     }
   }
   return (
-    <Navbar className="sticky-header" bg={color} variant={color}>
+    <Navbar className="sticky-header" bg={color} variant="dark">
       <Container>
         <Row className="w-100">
           <Col md={12} className="d-flex">
