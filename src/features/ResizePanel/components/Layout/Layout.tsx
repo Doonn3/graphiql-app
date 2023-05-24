@@ -38,7 +38,7 @@ const Layout = React.forwardRef<ILayout, ILayoutProps>((props, ref) => {
       style={
         whStyle.width === undefined && whStyle.height === undefined
           ? {}
-          : { width: whStyle.width, height: whStyle.height }
+          : { width: whStyle.width + '%', height: whStyle.height + '%' }
       }
     >
       {props.children}
