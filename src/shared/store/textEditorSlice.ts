@@ -3,12 +3,14 @@ interface TextEditorText {
   text: string;
   queryValue: string;
   showModal: boolean;
+  errorValue: string;
 }
 
 const initialState: TextEditorText = {
   text: '',
   queryValue: '',
   showModal: false,
+  errorValue: '',
 };
 
 const textEditorSlice = createSlice({
@@ -24,8 +26,11 @@ const textEditorSlice = createSlice({
     changeShowModal(state, action) {
       state.showModal = action.payload;
     },
+    setErrorValue(state, action) {
+      state.errorValue = action.payload;
+    },
   },
 });
 
-export const { setText, setQueryValue, changeShowModal } = textEditorSlice.actions;
+export const { setText, setQueryValue, changeShowModal, setErrorValue } = textEditorSlice.actions;
 export default textEditorSlice.reducer;

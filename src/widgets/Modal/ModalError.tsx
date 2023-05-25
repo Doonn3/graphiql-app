@@ -6,6 +6,7 @@ import { changeShowModal } from '@shared/store/textEditorSlice';
 
 const ModalError = () => {
   const showModal = useSelector((state: RootState) => state.ide.showModal);
+  const errorValue = useSelector((state: RootState) => state.ide.errorValue);
   const dispatch = useDispatch();
 
   const handleClose = () => {
@@ -20,7 +21,7 @@ const ModalError = () => {
         </Modal.Header>
 
         <Modal.Body>
-          <p>eeeerrrroooeoeoeof.</p>
+          <p>{errorValue}</p>
         </Modal.Body>
       </Modal.Dialog>
     </Modal>

@@ -6,9 +6,10 @@ import { useState } from 'react';
 import FetchApi from '@shared/FetchApi/FetchApi';
 import IDE from '@widgets/IDE/IDE';
 import './main.style.scss';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@shared/store/store';
 import ModalError from '@widgets/Modal/ModalError';
+import { changeShowModal, setErrorValue } from '@shared/store/textEditorSlice';
 
 function Main() {
   // TEST
@@ -16,6 +17,7 @@ function Main() {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
   const variable = useSelector((state: RootState) => state.ide.text);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (loading) return;
@@ -26,8 +28,13 @@ function Main() {
 
   const handlerIDE = async (data: string) => {
     const test = await FetchApi.instance.RequestQuery(data, variable);
-    const dataSTR = JSON.stringify(test, null, 2);
-    setDataAPI(dataSTR);
+    if (test instanceof Error) {
+      dispatch(setErrorValue(test.message));
+      dispatch(changeShowModal(true));
+    } else {
+      const dataSTR = JSON.stringify(test, null, 2);
+      setDataAPI(dataSTR);
+    }
   };
   //<<TEST
 
