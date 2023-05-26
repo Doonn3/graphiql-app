@@ -20,7 +20,7 @@ function Singup() {
   } = useForm<SingupData>();
 
   const [user, loading] = useAuthState(auth);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ function Singup() {
 
   return (
     <>
-      <Container className="min-vh-100 d-flex justify-content-center align-items-center">
+      <Container className="singup d-flex justify-content-center">
         <div className="w-50 p-5 border rounded ">
           <Form onSubmit={handleSubmit(singUp)}>
             <h1 className="h3 mb-3 text-center">{t('singUp.psu')}</h1>

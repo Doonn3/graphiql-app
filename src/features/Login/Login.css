@@ -4,3 +4,8 @@
   font-size: 14px;
   margin-top: 3px;
 }
+@media (max-width: 600px) {
+ .w-50{
+      width: 100%!important;
+  }
+}

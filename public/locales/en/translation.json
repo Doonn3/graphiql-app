@@ -55,6 +55,7 @@
   },
   "singUp": {
     "psu": "Please Sign up",
+    "psi": "Please Sign in",
     "fl": "Full Name",
     "ea": "Email address",
     "ps": "Password"

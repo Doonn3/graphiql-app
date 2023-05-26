@@ -2,10 +2,10 @@ import { auth, logInWithEmailAndPassword } from '@shared/firebase/firebase';
 import { Form, Button, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import './Login.css';
 import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
+import './Login.css';
 
 interface LoginData {
   email: string;
@@ -13,7 +13,7 @@ interface LoginData {
 }
 
 function Login() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [err, setErr] = useState('');
   const {
     register,
@@ -42,8 +42,8 @@ function Login() {
 
   return (
     <>
-      <Container className="min-vh-100 d-flex justify-content-center align-items-center">
-        <div className="w-50 p-5 border rounded ">
+      <Container className=" d-flex justify-content-center align-items-center">
+        <div className="singup w-50 p-5 border rounded ">
           <Form onSubmit={handleSubmit(logIn)}>
             <h1 className="h3 mb-3 text-center">{t('singUp.psu')}</h1>
             <Form.Group className="mb-3" controlId="formBasicEmail">

@@ -27,7 +27,6 @@ const Layout = React.forwardRef<ILayout, ILayoutProps>((props, ref) => {
 
   const resize = (size: LayerSize) => {
     const { width, height } = size;
-
     setwhStyle({ width, height });
   };
 
