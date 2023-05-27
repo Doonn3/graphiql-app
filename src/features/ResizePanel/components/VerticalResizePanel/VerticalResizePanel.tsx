@@ -42,10 +42,10 @@ function VerticalResizePanel(props: IVerticalResizePanelProps) {
       console.log(layout2);
       const width2 = layout2.current?.width as number;
       const newWidth2 = width2 - ownResize.direction.X;
-      console.log(newWidth2);
+      const windowWidth = window.screen.width;
 
-      layout1.current?.handlerChange({ width: newWidth });
-      layout2.current?.handlerChange({ width: newWidth2 });
+      layout1.current?.handlerChange({ width: (newWidth / windowWidth) * 100 });
+      layout2.current?.handlerChange({ width: (newWidth2 / windowWidth) * 100 });
     }
     resize();
   }, [ownResize.direction.X]);

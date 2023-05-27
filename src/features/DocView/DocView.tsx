@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import FetchApi from '../../shared/FetchApi/FetchApi';
 import style from './doc-view.module.scss';
+import { useDispatch } from 'react-redux';
+import { changeShowModal, setErrorValue } from '@shared/store/textEditorSlice';
 
 async function test() {
   const testGetSchema = await FetchApi.instance.RequestIntrospection();
-
+  if (testGetSchema instanceof Error) {
+    return testGetSchema;
+  }
   const queryType = testGetSchema?.getQueryType();
 
   return testGetSchema?.getTypeMap();
@@ -19,12 +23,18 @@ interface ISearch {
 function Search(props: ISearch) {
   const [value, setValue] = useState('');
   const [snippets, setSnippets] = useState<JSX.Element[]>([]);
+  const dispatch = useDispatch();
 
   const handlerInput = async (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.currentTarget.value);
 
     if (event.currentTarget.value.length > 0) {
       const tt = await test();
+      if (tt instanceof Error) {
+        dispatch(setErrorValue(tt.message));
+        dispatch(changeShowModal(true));
+      }
+
       if (tt === undefined) return;
       const ent = Object.entries(tt);
 
@@ -74,9 +84,15 @@ function Search(props: ISearch) {
 
 function DocView() {
   const [doc, setDoc] = useState<JSX.Element>();
+  const dispatch = useDispatch();
 
   const handlerSearch = async (value: string) => {
     const tt = await test();
+    if (tt instanceof Error) {
+      dispatch(setErrorValue(tt.message));
+      dispatch(changeShowModal(true));
+    }
+
     if (tt === undefined) return;
     const ent = Object.entries(tt);
     const find = ent.find((elem) => elem[0] === value);

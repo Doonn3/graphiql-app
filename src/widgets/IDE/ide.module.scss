@@ -11,21 +11,5 @@
     display: flex;
     width: 100%;
     justify-content: flex-end;
-}
-
-.btn {
-    width: 100px;
-    border: none;
-    background-color: rgb(38, 70, 38);
-    color: white;
-
-    transition: 0.4s background;
-    cursor: pointer;
-    &:hover {
-        background-color: rgb(66, 121, 66);
-    }
-
-    &:active {
-        transform: scale(0.9);
-    }
+    padding: 5px 0;
 }
