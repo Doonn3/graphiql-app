@@ -71,6 +71,35 @@ body {
   }
  }
  @media (max-width: 600px) {
+  .main{
+    flex-direction: column;
+    ._panel_gdarz_1 {
+      height: auto;
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+    }
+    ._verticale_zhca1_1{
+      min-height: 500px;
+      flex-direction: column;
+      height: auto;
+    }
+    ._layout_tk32v_1{
+      width: 100%!important;
+    }
+    .CodeMirror-code{
+      min-height: 200px;
+    }
+    ._editor_sg9op_1{
+      min-height: 200px;
+    }
+    .responce{
+      min-height: 300px;
+    }
+    .bg-light{    
+      margin-top: 156px;
+    }
+  }
   .navbar-brand{
     margin-right: 0!important;
   }
