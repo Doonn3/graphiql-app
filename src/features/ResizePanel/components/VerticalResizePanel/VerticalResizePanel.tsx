@@ -31,10 +31,15 @@ function VerticalResizePanel(props: IVerticalResizePanelProps) {
   useEffect(() => {
     function resize() {
       if (!layoutRefs.current) return;
+      console.log('hi');
       const layout1 = layoutRefs.current[0];
+      console.log(layout1);
       const width1 = layout1.current?.width as number;
+      console.log(width1);
       const newWidth = width1 + ownResize.direction.X;
+      console.log(newWidth);
       const layout2 = layoutRefs.current[1];
+      console.log(layout2);
       const width2 = layout2.current?.width as number;
       const newWidth2 = width2 - ownResize.direction.X;
       const windowWidth = window.screen.width;

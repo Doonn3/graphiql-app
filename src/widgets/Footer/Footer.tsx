@@ -1,9 +1,10 @@
 import React from 'react';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 import { useTranslation } from 'react-i18next';
+import logo from '../../public/logo-rs.svg';
 
 export default function Footer() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <MDBFooter bgColor="light" className="footer text-center text-lg-start text-muted">
       <section className="">
@@ -15,6 +16,9 @@ export default function Footer() {
                 {t('footer.survivors')}
               </h6>
               <p>{t('footer.grapgQl')}</p>
+              <a href="https://rs.school/react/">
+                <img className="logo" src={logo} alt="rs" />
+              </a>
             </MDBCol>
 
             <MDBCol md="2" lg="2" xl="2" className="mx-auto mb-4">
