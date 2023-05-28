@@ -3,21 +3,27 @@ import {
   GraphQLField,
   GraphQLFieldMap,
   GraphQLInputObjectType,
+  GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
   GraphQLOutputType,
   GraphQLScalarType,
   GraphQLType,
 } from 'graphql';
+import { Maybe } from 'graphql/jsutils/Maybe';
 
 export interface GraphQLHandlerType {
   objectField?: GraphQLField<object, object>;
   objectFields?: GraphQLFieldMap<object, object>;
   scalarType?: GraphQLScalarType;
   objectType?: GraphQLInputObjectType;
+  descriptions?: Maybe<string>;
 }
 
-function ArgsBuilder(arg: GraphQLArgument): JSX.Element | null {
+function ArgsBuilder(
+  arg: GraphQLArgument,
+  handler: (context: GraphQLHandlerType) => void
+): JSX.Element | null {
   const type = arg.type;
   let result: JSX.Element | null = null;
 
@@ -27,7 +33,7 @@ function ArgsBuilder(arg: GraphQLArgument): JSX.Element | null {
       <span className="arg">
         <span className="arg__name">{arg.name}</span>:{' '}
         <span>
-          <span className="arg__type-name">{inputType.name}</span>!
+          <span className="arg__type-name">{inputType.name + ' = {}'}</span>
         </span>
       </span>
     );
@@ -40,7 +46,13 @@ function ArgsBuilder(arg: GraphQLArgument): JSX.Element | null {
         <span className="arg">
           <span className="arg__name">{arg.name}</span>:{' '}
           <span>
-            <span className="arg__type-name">{ofType.name}</span>!
+            <span
+              className="arg__type-name"
+              onClick={() => handler({ descriptions: ofType.description })}
+            >
+              {ofType.name}
+            </span>
+            !
           </span>
         </span>
       );
@@ -78,6 +90,15 @@ function BuildField(
     const item = content[field];
     const args = item.args;
     const itemTypeName = (item.type as GraphQLObjectType).name;
+
+    if (item.type instanceof GraphQLNonNull) {
+      const elem = createItemFieldGraphList(item, handler);
+      items.push(elem);
+    } else {
+      const elem = createItemFieldObjectType(item, handler);
+      console.log(item, 'TTTTTTTTTTTTTTTTt');
+      items.push(elem);
+    }
     // let itemTypeName = '';
 
     // if (item.type instanceof GraphQLNonNull) {
@@ -87,29 +108,92 @@ function BuildField(
     //   console.log(item.type.ofType, 'ITEM');
     // }
 
-    const fields = getObjectType(item.type);
+    // const fields = getObjectType(item.type);
 
-    const elem = (
-      <>
-        <span className="doc-item__field-name" onClick={() => handler({ objectField: item })}>
-          {item.name}
-        </span>
-        <span>
-          {args.map((arg, id) => (
-            <div key={id}>({ArgsBuilder(arg)})</div>
-          ))}
-        </span>
-        {`:`}
-        <span className="doc-item__type" onClick={() => handler({ objectFields: fields })}>
-          &nbsp;{itemTypeName}
-        </span>
-      </>
-    );
-    items.push(elem);
+    // const elem = (
+    //   <>
+    //     <span className="doc-item__field-name" onClick={() => handler({ objectField: item })}>
+    //       {item.name}
+    //     </span>
+    //     <span>
+    //       {args.map((arg, id) => (
+    //         <div key={id}>({ArgsBuilder(arg)})</div>
+    //       ))}
+    //     </span>
+    //     {`:`}
+    //     <span className="doc-item__type" onClick={() => handler({ objectFields: fields })}>
+    //       &nbsp;{itemTypeName}
+    //     </span>
+    //   </>
+    // );
+    // items.push(elem);
     // break;
   }
 
   return items;
+}
+
+function createItemFieldGraphList(
+  item: GraphQLField<object, object>,
+  handler: (context: GraphQLHandlerType) => void
+) {
+  const args = item.args;
+  let itemTypeName = '';
+
+  if (item.type instanceof GraphQLNonNull) {
+    if (item.type.ofType instanceof GraphQLList) {
+      if (item.type.ofType.ofType instanceof GraphQLNonNull) {
+        if (item.type.ofType.ofType.ofType instanceof GraphQLObjectType) {
+          const obj = item.type.ofType.ofType.ofType;
+          itemTypeName = `[${obj.name}]!`;
+        }
+      }
+    }
+  }
+
+  // console.log(itemTypeName);
+  const fields = getObjectType(item.type);
+  const elem = (
+    <>
+      <span className="doc-item__field-name" onClick={() => handler({ objectField: item })}>
+        {item.name}
+      </span>
+      <span>
+        {args.map((arg, id) => (
+          <div key={id}>({ArgsBuilder(arg, handler)})</div>
+        ))}
+      </span>
+      {`:`}
+      <span className="doc-item__type">&nbsp;{itemTypeName}</span>
+    </>
+  );
+  return elem;
+}
+
+function createItemFieldObjectType(
+  item: GraphQLField<object, object>,
+  handler: (context: GraphQLHandlerType) => void
+) {
+  const args = item.args;
+  let itemTypeName = '';
+  if (item.type instanceof GraphQLObjectType) {
+    itemTypeName = item.type.name;
+  }
+  const elem = (
+    <>
+      <span className="doc-item__field-name" onClick={() => handler({ objectField: item })}>
+        {item.name}
+      </span>
+      <span>
+        {args.map((arg, id) => (
+          <div key={id}>({ArgsBuilder(arg, handler)})</div>
+        ))}
+      </span>
+      {`:`}
+      <span className="doc-item__type">&nbsp;{itemTypeName}</span>
+    </>
+  );
+  return elem;
 }
 
 export default BuildField;

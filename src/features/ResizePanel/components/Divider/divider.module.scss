@@ -1,6 +1,7 @@
 .divider {
   background-color: rgb(163, 163, 163);
-
+  user-select: none;
+  
   &:hover {
     background-color: #1d5b87;
   }
@@ -13,11 +14,13 @@
 .vertical {
   width: 5px;
   height: 100%;
+  user-select: none;
   cursor: col-resize;
 }
 
 .horizontal {
   width: 100%;
   height: 5px;
+  user-select: none;
   cursor: row-resize;
 }

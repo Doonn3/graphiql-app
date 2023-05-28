@@ -4,6 +4,9 @@
   padding: 10px;
 
   &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   &__title {
@@ -21,5 +24,16 @@
     font-size: 20px;
 
     color: white;
+  }
+
+  &__back {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: white;
+    // background-color: red;
+
+    cursor: pointer;
   }
 }

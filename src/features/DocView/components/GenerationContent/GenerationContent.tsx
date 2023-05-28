@@ -1,5 +1,6 @@
 import { GraphQLFieldMap, GraphQLObjectType } from 'graphql';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { DocViewContext } from '../../DocView';
 import Fields, { HandlerAgrument, PropsFieldsType } from '../../helpers/Fields';
 import RootTypes from '../../helpers/RootTypes';
 import TypeAndArgumentsHelper, {
@@ -12,8 +13,10 @@ export interface GenContentType {
 }
 
 function GenerationContent(props: GenContentType) {
+  const { isClick } = useContext(DocViewContext);
   const [propsFields, setPropsFields] = useState<PropsFieldsType>();
   const [propsTypeAndArgs, setPropsTypeAndArgs] = useState<TypeAndArgumentsPropsType>();
+  const [descriptions, setDescriptions] = useState('');
 
   const handlerRootTypes = (fields: GraphQLFieldMap<object, object>) => {
     setPropsTypeAndArgs(undefined);
@@ -29,6 +32,12 @@ function GenerationContent(props: GenContentType) {
     //     // setPropsFields({ fields: result });
     //   }
     // } else
+    if (context.descriptions) {
+      setPropsFields(undefined);
+      setPropsTypeAndArgs(undefined);
+      setDescriptions(context.descriptions);
+    }
+
     if (context.field) {
       const args = context.field.args.slice();
       const type = context.field.type as GraphQLObjectType;
@@ -39,17 +48,26 @@ function GenerationContent(props: GenContentType) {
     }
   };
 
+  useEffect(() => {
+    if (isClick || !isClick) {
+      setDescriptions('');
+      setPropsFields(undefined);
+      setPropsTypeAndArgs(undefined);
+    }
+  }, [isClick]);
+
   return (
     <div>
-      {propsFields === undefined ? (
+      {propsFields === undefined && !propsTypeAndArgs ? (
         <RootTypes graphQLObject={props.typeObjectQuery} handler={handlerRootTypes} />
+      ) : propsFields !== undefined ? (
+        <Fields fields={propsFields.fields} handlerField={handlerFields} />
       ) : (
         ''
       )}
-
-      {propsFields && <Fields fields={propsFields.fields} handlerField={handlerFields} />}
-
       {propsTypeAndArgs && <TypeAndArgumentsHelper {...propsTypeAndArgs} />}
+
+      {descriptions && <p>{descriptions}</p>}
     </div>
   );
 }
