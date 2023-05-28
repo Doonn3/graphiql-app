@@ -179,7 +179,7 @@ function GenerationContent(props: GenContentType) {
     const args = context.args.slice();
     const type = context.type as GraphQLObjectType;
 
-    console.log(context);
+    // console.log(context);
     // if (type instanceof GraphQLNonNull) {
     //   console.log(type.ofType.ofType.ofType);
     // }
