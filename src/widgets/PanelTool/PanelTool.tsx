@@ -1,15 +1,28 @@
 import { ReactComponent as DocumentationIcon } from '@assets/documentation.svg';
-import { useState } from 'react';
-import DocView from '../../features/DocView/DocView';
+import { useEffect, useState } from 'react';
+import DocView from '@features/DocView/DocView';
 
 import style from './paneltool.module.scss';
+import { GraphQLSchema } from 'graphql';
+import FetchApi from '../../shared/FetchApi/FetchApi';
 
 function PanelTool() {
   const [isActiveDoc, setActiveDoc] = useState(false);
+  const [schema, setSchema] = useState<GraphQLSchema | undefined>();
 
   const handlerDocClick = () => {
     setActiveDoc(!isActiveDoc);
   };
+
+  useEffect(() => {
+    async function getSchema() {
+      const schema = await FetchApi.instance.RequestIntrospection();
+      if (schema instanceof GraphQLSchema) {
+        setSchema(schema);
+      }
+    }
+    getSchema();
+  }, []);
 
   return (
     <div className={`${style.panel} ${isActiveDoc ? style.sliding : ''}`}>
@@ -19,7 +32,7 @@ function PanelTool() {
         </div>
       </div>
 
-      {isActiveDoc && <DocView />}
+      {isActiveDoc && <DocView schema={schema} />}
     </div>
   );
 }

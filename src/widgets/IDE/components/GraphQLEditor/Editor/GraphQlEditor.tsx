@@ -35,9 +35,12 @@ const GraphQLEditor = () => {
           gutters: ['lightgrey'],
           fixedGutter: true,
           lineWrapping: true,
-          viewportMargin: Infinity,
+          // viewportMargin: Infinity,
           theme: 'monokai',
           mode: 'graphql',
+          showCursorWhenSelecting: false,
+          autocorrect: true,
+          autocapitalize: true,
           lint: {
             options: {
               schema: schema,

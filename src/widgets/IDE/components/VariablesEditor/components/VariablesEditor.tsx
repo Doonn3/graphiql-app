@@ -5,20 +5,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@shared/store/store';
 import { setText } from '@shared/store/textEditorSlice';
 
-type HandlerType = (value: string) => void;
-
 function VariablesEditor() {
   const ownRef = useRef<EditorViewType | null>(null);
 
   const inputValue = useSelector((state: RootState) => state.ide.text);
   const dispatch = useDispatch();
 
-  const ref = useCallback((node: HTMLDivElement) => {
-    if (node && !ownRef.current) {
-      const { view } = createEditor(node, 'json', true, handlerEditor);
-      ownRef.current = view;
-    }
-  }, []);
+  const ref = useCallback(
+    (node: HTMLDivElement) => {
+      if (node && !ownRef.current) {
+        const handlerEditor = (event: string) => {
+          dispatch(setText(event));
+        };
+
+        const { view } = createEditor(node, 'json', true, handlerEditor);
+        ownRef.current = view;
+      }
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     if (ownRef.current === null) return;
@@ -30,10 +35,6 @@ function VariablesEditor() {
       });
     }
   }, [inputValue]);
-
-  const handlerEditor = (event: string) => {
-    dispatch(setText(event));
-  };
 
   return <div className={style.editor} ref={ref}></div>;
 }

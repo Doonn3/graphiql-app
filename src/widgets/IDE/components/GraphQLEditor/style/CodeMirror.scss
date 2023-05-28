@@ -10,6 +10,14 @@
 .CodeMirror-scroll {
   margin: 0;
   padding: 0;
-  overflow-y: hidden !important;
+  overflow-y: visible !important;
   overflow-x: hidden !important;
+}
+
+.CodeMirror-hints {
+  text-align: start;
+}
+
+.CodeMirror-hint-active {
+  width: 100%;
 }

@@ -1,4 +1,4 @@
-import { buildClientSchema, getIntrospectionQuery, GraphQLSchema, printSchema } from 'graphql';
+import { buildClientSchema, getIntrospectionQuery, GraphQLSchema } from 'graphql';
 
 class FetchApi {
   static instance: FetchApi = new FetchApi();
