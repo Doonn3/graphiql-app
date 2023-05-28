@@ -30,7 +30,11 @@ const locales: Locales = {
 function ChangeLang() {
   const { t } = useTranslation();
   return (
-    <DropdownButton variant="dark" id="dropdown-basic-button" title={t('lang.' + i18n.language)}>
+    <DropdownButton
+      variant="dark"
+      id="dropdown-basic-button"
+      title={t('lang.' + i18n.language.slice(0, 2))}
+    >
       {Object.keys(locales).map((locale) => (
         <Dropdown.Item href="#/" key={locale} onClick={() => i18n.changeLanguage(locale)}>
           {t('lang.' + locales[locale].title)}
