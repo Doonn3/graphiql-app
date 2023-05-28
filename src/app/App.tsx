@@ -21,11 +21,6 @@ function App() {
       i18n.changeLanguage(savedLanguage);
     }
   }, []);
-
-  const changeLanguage = (newLanguage: string) => {
-    i18n.changeLanguage(newLanguage);
-    localStorage.setItem('language', newLanguage);
-  };
   return (
     <>
       <div className="wrapper">
