@@ -10,11 +10,17 @@ import UncontrolledExample from '@pages/Welcome/Welcome';
 import Main from '@pages/Main/Main';
 import PageNotFound from '@pages/PageNotFound/PageNotFound';
 import Foooter from '@widgets/Footer/Footer';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
+import i18n from './i18n';
 
 function App() {
   const [, loading] = useAuthState(auth);
-
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, []);
   return (
     <>
       <div className="wrapper">
