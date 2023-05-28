@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useTranslation } from 'react-i18next';
+import './Singup.scss';
 
 interface SingupData {
   name: string;
@@ -37,8 +38,8 @@ function Singup() {
 
   return (
     <>
-      <Container className="singup d-flex justify-content-center">
-        <div className="w-50 p-5 border rounded ">
+      <Container className="singup-container d-flex justify-content-center align-items-center">
+        <div className="singup w-50 p-5 border rounded ">
           <Form onSubmit={handleSubmit(singUp)}>
             <h1 className="h3 mb-3 text-center">{t('singUp.psu')}</h1>
             <Form.Group className="mb-3">
