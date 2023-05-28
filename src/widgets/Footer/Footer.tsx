@@ -1,8 +1,6 @@
-import React from 'react';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 import { useTranslation } from 'react-i18next';
-// import logo from '../../public/logo-rs.svg';
-import { ReactComponent as Logo } from '../../../public/logo-rs.svg';
+import { ReactComponent as Logo } from '@assets/logo-rs.svg';
 
 export default function Footer() {
   const { t } = useTranslation();
