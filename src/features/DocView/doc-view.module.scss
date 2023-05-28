@@ -1,0 +1,39 @@
+.doc {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    color: white;
+  }
+
+  &__search {
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+
+    color: white;
+  }
+
+  &__back {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: white;
+    // background-color: red;
+
+    cursor: pointer;
+  }
+}
