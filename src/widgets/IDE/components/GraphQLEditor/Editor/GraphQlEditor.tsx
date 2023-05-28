@@ -13,7 +13,7 @@ import 'codemirror/theme/monokai.css';
 import style from '../style/text-editor.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@shared/store/store';
-import { setQueryValue } from '@shared/store/textEditorSlice';
+import { changeShowModal, setErrorValue, setQueryValue } from '@shared/store/textEditorSlice';
 
 const GraphQLEditor = () => {
   const editorRef = useRef<CodeMirror.EditorFromTextArea | null>(null);
@@ -25,7 +25,10 @@ const GraphQLEditor = () => {
       if (node && !editorRef.current) {
         const schema = await FetchApi.instance.RequestIntrospection();
         if (schema === null) return;
-
+        if (schema instanceof Error) {
+          dispatch(setErrorValue(schema.message));
+          dispatch(changeShowModal(true));
+        }
         editorRef.current = CodeMirror.fromTextArea(node, {
           indentUnit: 2,
           lineNumbers: true,
@@ -41,7 +44,7 @@ const GraphQLEditor = () => {
             },
           },
           hintOptions: {
-            schema: schema,
+            schema: schema instanceof Error ? undefined : schema,
             closeOnUnfocus: true,
             completeSingle: true,
           },

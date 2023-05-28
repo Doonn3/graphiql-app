@@ -1,0 +1,9 @@
+.modal-error {
+  display: flex !important;
+  align-items: center;
+
+  &-window {
+    min-width: 500px;
+    padding: 0 20px;
+  }
+}

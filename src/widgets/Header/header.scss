@@ -1,0 +1,25 @@
+.sticky-header {
+  position: sticky !important;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1020;
+  transition: .7s;
+  font-weight: 700;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.75)!important;
+}
+
+.nav-link.active {
+  color: rgba(255, 255, 255, 1)!important;
+}
+
+.nav-link:hover {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.sticky-header.bg-secondary {
+  background-color: rgb(63, 65, 68)!important;
+}
