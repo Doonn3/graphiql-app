@@ -29,6 +29,7 @@ function createEditor(
       EditorView.editable.of(isEditable),
       lineNumbers(),
       keymap.of(defaultKeymap),
+      EditorView.lineWrapping,
       EditorView.updateListener.of((update) => {
         if (update.docChanged) {
           const value = update.state.doc.sliceString(0);
