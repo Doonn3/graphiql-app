@@ -15,10 +15,12 @@ function RootTypes(props: RootPropsType) {
 
   return (
     <div>
-      <h3>Root Types</h3>
+      <h3 className="doc-explorer__title">Root Types</h3>
       <div>
-        <span>query:</span>
-        <span onClick={() => handlerClick(props.graphQLObject)}>{props.graphQLObject?.name}</span>
+        <span className="doc-explorer__arg-name">query: </span>
+        <span className="doc-item__type" onClick={() => handlerClick(props.graphQLObject)}>
+          {props.graphQLObject?.name}
+        </span>
       </div>
     </div>
   );
