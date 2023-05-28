@@ -33,6 +33,7 @@ function VerticalResizePanel(props: IVerticalResizePanelProps) {
       if (!layoutRefs.current) return;
       const layout1 = layoutRefs.current[0];
       const width1 = layout1.current?.width as number;
+
       const newWidth = width1 + ownResize.direction.X;
       const layout2 = layoutRefs.current[1];
       const width2 = layout2.current?.width as number;
