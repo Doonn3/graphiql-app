@@ -5,6 +5,7 @@ import BuildField, { GraphQLHandlerType } from './BuildField';
 export interface HandlerAgrument {
   field?: GraphQLField<object, object>;
   fields?: GraphQLFieldMap<object, object>;
+  descriptions?: string;
 }
 
 export interface PropsFieldsType {
@@ -32,6 +33,10 @@ function Fields(props: PropsFieldsType) {
 
   const handlerClickArgsAndType = useCallback(
     (context: GraphQLHandlerType) => {
+      if (context.descriptions) {
+        if (props.handlerField) props.handlerField({ descriptions: context.descriptions });
+      }
+
       if (context.objectField) {
         if (props.handlerField) props.handlerField({ field: context.objectField });
       }
