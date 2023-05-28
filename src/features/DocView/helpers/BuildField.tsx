@@ -6,7 +6,6 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
-  GraphQLOutputType,
   GraphQLScalarType,
   GraphQLType,
 } from 'graphql';
@@ -71,13 +70,14 @@ function ArgsBuilder(
 
   return result;
 }
-function getObjectType(item: GraphQLOutputType | GraphQLObjectType) {
-  if (item instanceof GraphQLObjectType) {
-    return item.getFields();
-  } else {
-    return undefined;
-  }
-}
+
+// function getObjectType(item: GraphQLOutputType | GraphQLObjectType) {
+//   if (item instanceof GraphQLObjectType) {
+//     return item.getFields();
+//   } else {
+//     return undefined;
+//   }
+// }
 
 function BuildField(
   content: GraphQLFieldMap<object, object> | undefined,
@@ -88,46 +88,14 @@ function BuildField(
 
   for (const field in content) {
     const item = content[field];
-    const args = item.args;
-    const itemTypeName = (item.type as GraphQLObjectType).name;
 
     if (item.type instanceof GraphQLNonNull) {
       const elem = createItemFieldGraphList(item, handler);
       items.push(elem);
     } else {
       const elem = createItemFieldObjectType(item, handler);
-      console.log(item, 'TTTTTTTTTTTTTTTTt');
       items.push(elem);
     }
-    // let itemTypeName = '';
-
-    // if (item.type instanceof GraphQLNonNull) {
-    //   if (item.type.ofType instanceof GraphQLScalarType) {
-    //     itemTypeName = `${item.type.ofType.name}!`;
-    //   }
-    //   console.log(item.type.ofType, 'ITEM');
-    // }
-
-    // const fields = getObjectType(item.type);
-
-    // const elem = (
-    //   <>
-    //     <span className="doc-item__field-name" onClick={() => handler({ objectField: item })}>
-    //       {item.name}
-    //     </span>
-    //     <span>
-    //       {args.map((arg, id) => (
-    //         <div key={id}>({ArgsBuilder(arg)})</div>
-    //       ))}
-    //     </span>
-    //     {`:`}
-    //     <span className="doc-item__type" onClick={() => handler({ objectFields: fields })}>
-    //       &nbsp;{itemTypeName}
-    //     </span>
-    //   </>
-    // );
-    // items.push(elem);
-    // break;
   }
 
   return items;
@@ -151,8 +119,7 @@ function createItemFieldGraphList(
     }
   }
 
-  // console.log(itemTypeName);
-  const fields = getObjectType(item.type);
+  // const fields = getObjectType(item.type);
   const elem = (
     <>
       <span className="doc-item__field-name" onClick={() => handler({ objectField: item })}>

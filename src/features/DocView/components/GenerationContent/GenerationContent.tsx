@@ -24,14 +24,6 @@ function GenerationContent(props: GenContentType) {
   };
 
   const handlerFields = (context: HandlerAgrument) => {
-    // if (context.field?.type instanceof GraphQLNonNull) {
-    //   const field = context.field.type.ofType;
-    //   if (field instanceof GraphQLScalarType) {
-    //     const result = field;
-    //     console.log(result);
-    //     // setPropsFields({ fields: result });
-    //   }
-    // } else
     if (context.descriptions) {
       setPropsFields(undefined);
       setPropsTypeAndArgs(undefined);

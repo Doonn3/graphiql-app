@@ -14,7 +14,6 @@ export interface TypeAndArgumentsPropsType {
 function TypeAndArgumentsHelper(props: TypeAndArgumentsPropsType) {
   let name = '';
   if (props.type instanceof GraphQLNonNull) {
-    // console.log(props.type.ofType.ofType.ofType.name);
     name = `[${props.type.ofType.ofType.ofType.name}]!`;
   }
   return (
