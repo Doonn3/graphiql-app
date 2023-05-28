@@ -42,10 +42,10 @@ function Login() {
 
   return (
     <>
-      <Container className=" d-flex justify-content-center align-items-center">
+      <Container className="singin-container d-flex justify-content-center align-items-center">
         <div className="singup w-50 p-5 border rounded ">
           <Form onSubmit={handleSubmit(logIn)}>
-            <h1 className="h3 mb-3 text-center">{t('singUp.psu')}</h1>
+            <h1 className="h3 mb-3 text-center">{t('singUp.psi')}</h1>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>{t('placeholder.ee')}</Form.Label>
               <Form.Control

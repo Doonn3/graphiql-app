@@ -1,3 +1,8 @@
+.singin-container {
+  flex: 1 0 0;
+  margin-bottom: 40px;
+}
+
 .error {
   display: block;
   color: #FF0033;
