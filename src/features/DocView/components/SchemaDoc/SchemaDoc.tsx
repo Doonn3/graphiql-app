@@ -12,7 +12,6 @@ function SchemaDoc({ schema }: SchemaDocProps) {
 
   return (
     <div>
-      <h2>Schema</h2>
       {queryType && (
         <div>
           <TypeDoc type={queryType} />
