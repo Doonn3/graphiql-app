@@ -5,8 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@shared/store/store';
 import { setText } from '@shared/store/textEditorSlice';
 
-type HandlerType = (value: string) => void;
-
 function VariablesEditor() {
   const ownRef = useRef<EditorViewType | null>(null);
 
