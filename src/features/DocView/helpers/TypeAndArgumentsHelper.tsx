@@ -16,15 +16,21 @@ export interface TypeAndArgumentsPropsType {
 }
 
 function TypeAndArgumentsHelper(props: TypeAndArgumentsPropsType) {
-  console.log(props.args);
+  let name = '';
+  if (props.type instanceof GraphQLNonNull) {
+    // console.log(props.type.ofType.ofType.ofType.name);
+    name = `[${props.type.ofType.ofType.ofType.name}]!`;
+  }
   return (
     <div>
-      <div>
-        <h3>Type</h3>
-        <div>{props.type.name}</div>
+      <div className="doc-explorer__content">
+        <h3 className="doc-explorer__title">Type</h3>
+        <div className="doc-explorer__type-name">
+          {props.type instanceof GraphQLNonNull ? name : props.type.name}
+        </div>
       </div>
-      <div>
-        <h3>Arguments</h3>
+      <div className="doc-explorer__content">
+        <h3 className="doc-explorer__title">Arguments</h3>
         <div>
           {props.args.map((item, id) => {
             const type = item.type;
@@ -32,7 +38,7 @@ function TypeAndArgumentsHelper(props: TypeAndArgumentsPropsType) {
             if (type instanceof GraphQLInputObjectType) {
               elem = (
                 <>
-                  <span>{type.name}</span>
+                  <span className="doc-explorer__type-name">{type.name}</span>
                   <span> = </span>
                   <span>{`{}`}</span>
                 </>
@@ -43,12 +49,12 @@ function TypeAndArgumentsHelper(props: TypeAndArgumentsPropsType) {
 
             if (type instanceof GraphQLNonNull) {
               const scalarType = type.ofType as GraphQLScalarType;
-              elem = <span>{scalarType.name}!</span>;
+              elem = <span className="doc-explorer__type-name">{scalarType.name}!</span>;
             }
 
             return (
               <div key={id}>
-                <span>{item.name}</span>
+                <span className="doc-explorer__arg-name">{item.name}</span>
                 <span>: </span>
                 {elem}
               </div>
