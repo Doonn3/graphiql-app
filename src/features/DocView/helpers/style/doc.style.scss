@@ -2,7 +2,7 @@
   &__content {
     margin-bottom: 20px;
   }
-  
+
   &__title {
     padding: 10px 0;
 
@@ -23,5 +23,44 @@
 
   &__arg-name {
     color: #8debf5;
+  }
+}
+
+.doc-item {
+  display: flex;
+  margin-bottom: 10px;
+
+  &__field-name {
+    color: #a0cdf9;
+
+    cursor: pointer;
+    &:hover {
+      filter: invert(0.4);
+    }
+  }
+
+  &__type {
+    color: #eaf58d;
+
+    cursor: pointer;
+    &:hover {
+      filter: invert(0.4);
+    }
+  }
+}
+
+.arg {
+  &__name {
+    color: #8debf5;
+  }
+
+  &__type-name {
+    color: #eaf58d;
+
+    cursor: pointer;
+
+    &:hover {
+      filter: invert(0.4);
+    }
   }
 }
