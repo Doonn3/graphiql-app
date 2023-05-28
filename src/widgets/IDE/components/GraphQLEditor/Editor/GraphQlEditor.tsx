@@ -35,18 +35,20 @@ const GraphQLEditor = () => {
           gutters: ['lightgrey'],
           fixedGutter: true,
           lineWrapping: true,
-          viewportMargin: Infinity,
+          // viewportMargin: Infinity,
           theme: 'monokai',
           mode: 'graphql',
+          showCursorWhenSelecting: false,
           lint: {
             options: {
               schema: schema,
+              validationRules: [schema],
             },
           },
           hintOptions: {
             schema: schema instanceof Error ? undefined : schema,
-            closeOnUnfocus: true,
-            completeSingle: true,
+            closeOnUnfocus: false,
+            completeSingle: false,
           },
           extraKeys: { 'Ctrl-Space': 'autocomplete' },
         });
