@@ -4,6 +4,7 @@ import SchemaDoc from './components/SchemaDoc/SchemaDoc';
 
 import Search from './components/Search/Search';
 import style from './doc-view.module.scss';
+import './helpers/style/doc.style.scss';
 
 import { getSchema } from './TEST/test';
 
