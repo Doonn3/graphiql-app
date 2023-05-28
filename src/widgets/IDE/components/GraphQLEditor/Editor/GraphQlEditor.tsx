@@ -39,6 +39,8 @@ const GraphQLEditor = () => {
           theme: 'monokai',
           mode: 'graphql',
           showCursorWhenSelecting: false,
+          autocorrect: true,
+          autocapitalize: true,
           lint: {
             options: {
               schema: schema,
@@ -46,8 +48,8 @@ const GraphQLEditor = () => {
           },
           hintOptions: {
             schema: schema instanceof Error ? undefined : schema,
-            closeOnUnfocus: false,
-            completeSingle: false,
+            closeOnUnfocus: true,
+            completeSingle: true,
           },
           extraKeys: { 'Ctrl-Space': 'autocomplete' },
         });
