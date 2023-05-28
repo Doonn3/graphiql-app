@@ -1,6 +1,6 @@
 import { GraphQLSchema } from 'graphql';
 import { useEffect, useState } from 'react';
-import SchemaDoc from './components/DocGenerator/components/SchemaDoc/SchemaDoc';
+import SchemaDoc from './components/SchemaDoc/SchemaDoc';
 
 import Search from './components/Search/Search';
 import style from './doc-view.module.scss';
@@ -30,7 +30,6 @@ function DocView() {
     async function fields() {
       const schema = await getSchema();
       if (!(schema instanceof GraphQLSchema)) return;
-      // console.log(test.continent);
       setSchema(schema);
     }
     fields();
