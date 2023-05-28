@@ -1,14 +1,10 @@
 import {
-  GraphQLArgs,
   GraphQLArgument,
-  GraphQLField,
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLObjectType,
-  GraphQLOutputType,
   GraphQLScalarType,
 } from 'graphql';
-import { type } from 'os';
 
 export interface TypeAndArgumentsPropsType {
   type: GraphQLObjectType | GraphQLScalarType;
