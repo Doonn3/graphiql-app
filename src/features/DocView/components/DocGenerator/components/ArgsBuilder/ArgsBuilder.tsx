@@ -27,7 +27,6 @@ function ArgsBuilder(arg: GraphQLArgument): JSX.Element | null {
   } else if (type instanceof GraphQLNonNull) {
     const nonNullType = type as GraphQLNonNull<GraphQLType>;
     const ofType = nonNullType.ofType;
-    console.log(ofType);
 
     if (ofType instanceof GraphQLScalarType) {
       result = (
