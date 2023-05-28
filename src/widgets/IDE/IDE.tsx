@@ -9,15 +9,16 @@ import GraphQLEditor from './components/GraphQLEditor';
 import VariablesEditor from './components/VariablesEditor';
 import { useSelector } from 'react-redux';
 import { RootState } from '@shared/store/store';
+import { useTranslation } from 'react-i18next';
 
 interface IIDE {
   handler: (data: string) => void;
   responce: string;
 }
-
 function IDE(props: IIDE) {
   const [isVariablesActive, setVariablesActive] = useState(true);
   const [isHeadersActive, setHeadersActive] = useState(false);
+  const { t } = useTranslation();
 
   const toggleActive = isVariablesActive ? 'active' : null;
   const toggleActiveHeader = isHeadersActive ? 'active' : null;
@@ -47,7 +48,7 @@ function IDE(props: IIDE) {
               <section className={style.ide}>
                 <div className={style.header}>
                   <button className="btn-start btn btn-secondary" onClick={handlerButtonClick}>
-                    Start
+                    {t('button.start')}
                   </button>
                 </div>
                 <GraphQLEditor />
@@ -60,13 +61,13 @@ function IDE(props: IIDE) {
                     className={`btn btn-secondary me-3 ${toggleActive}`}
                     onClick={handlerVariablesClick}
                   >
-                    Variables
+                    {t('button.variables')}
                   </button>
                   <button
                     className={`btn btn-secondary ${toggleActiveHeader}`}
                     onClick={handlerHeadersClick}
                   >
-                    Headers
+                    {t('button.headers')}
                   </button>
                 </div>
                 {isVariablesActive && <VariablesEditor />}

@@ -11,10 +11,11 @@ import Main from '@pages/Main/Main';
 import PageNotFound from '@pages/PageNotFound/PageNotFound';
 import Foooter from '@widgets/Footer/Footer';
 import { Suspense } from 'react';
+import i18n from './i18n';
 
 function App() {
   const [, loading] = useAuthState(auth);
-
+  const lang = i18n.language !== 'ru' && 'en' ? i18n.changeLanguage('en') : '';
   return (
     <>
       <div className="wrapper">

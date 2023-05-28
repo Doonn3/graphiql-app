@@ -44,7 +44,7 @@ function Header(): JSX.Element {
   const [user] = useAuthState(auth);
   const { t } = useTranslation();
   const [color, setColor] = useState('dark');
-
+  console.log(i18n.language);
   useEffect(() => {
     document.addEventListener('scroll', scrollHandler);
     return function () {
