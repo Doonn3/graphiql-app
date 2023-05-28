@@ -1,9 +1,11 @@
+import { GraphQLSchema } from 'graphql';
 import { useState } from 'react';
 
 import style from './search.module.scss';
 
 interface ISearch {
   handler?: (value: string) => void;
+  schema?: GraphQLSchema;
 }
 
 function Search(props: ISearch) {
@@ -14,28 +16,24 @@ function Search(props: ISearch) {
     setValue(event.currentTarget.value);
 
     if (event.currentTarget.value.length > 0) {
-      // const tt = await test();
-      // if (tt === undefined) return;
-      // const ent = Object.entries(tt);
+      if (props.schema === undefined) return;
+      const ent = Object.entries(props.schema);
 
-      // const searchElem = ent.filter((elem) =>
-      // // elem[0].toLocaleLowerCase().includes(value.toLocaleLowerCase())
-      // );
+      const searchElem = ent.filter((elem) =>
+        elem[0].toLocaleLowerCase().includes(value.toLocaleLowerCase())
+      );
 
       let resultSearch: JSX.Element[] = [];
 
-      // const elems = searchElem.map((elem, id) => {
-      // return (
-      // <li key={id} onClick={handlerType}>
-      {
-        /* {elem[0]} */
-      }
-      {
-        /* </li> */
-      }
-      // );
-      // });
-      // resultSearch = elems;
+      const elems = searchElem.map((elem, id) => {
+        return (
+          <li key={id} onClick={handlerType}>
+            {elem[0]}
+          </li>
+        );
+      });
+
+      resultSearch = elems;
 
       if (resultSearch.length <= 0) {
         const notFound = [<li key={0}>Not Found</li>];
