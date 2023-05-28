@@ -37,7 +37,7 @@ function HorizontalResizePanel(props: ILayerProps) {
       const layout2 = layoutRefs.current[1];
       const height2 = layout2.current?.height as number;
       const newHeight2 = height2 - ownResize.direction.Y;
-      const windowHeight = window.screen.height;
+      const windowHeight = newHeight + newHeight2;
       layout1.current?.handlerChange({ height: (newHeight / windowHeight) * 100 });
       layout2.current?.handlerChange({ height: (newHeight2 / windowHeight) * 100 });
     }
