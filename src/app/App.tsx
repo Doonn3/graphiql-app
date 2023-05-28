@@ -10,12 +10,22 @@ import UncontrolledExample from '@pages/Welcome/Welcome';
 import Main from '@pages/Main/Main';
 import PageNotFound from '@pages/PageNotFound/PageNotFound';
 import Foooter from '@widgets/Footer/Footer';
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import i18n from './i18n';
 
 function App() {
   const [, loading] = useAuthState(auth);
-  const lang = i18n.language !== 'ru' && 'en' ? i18n.changeLanguage('en') : '';
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, []);
+
+  const changeLanguage = (newLanguage: string) => {
+    i18n.changeLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
+  };
   return (
     <>
       <div className="wrapper">
