@@ -25,6 +25,7 @@ function Main() {
 
   const handlerIDE = async (data: string) => {
     const test = await FetchApi.instance.RequestQuery(data, variable);
+    console.log(test, '<<<<<<<<<<<<<<');
     const dataSTR = JSON.stringify(test, null, 2);
     setDataAPI(dataSTR);
   };
