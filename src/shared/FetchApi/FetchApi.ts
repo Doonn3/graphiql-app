@@ -1,13 +1,4 @@
-import { buildClientSchema, getIntrospectionQuery, GraphQLSchema, printSchema } from 'graphql';
-
-interface ErrorFieldsType {
-  message?: string;
-  stack?: string;
-}
-
-interface ErrorType {
-  error?: ErrorFieldsType;
-}
+import { buildClientSchema, getIntrospectionQuery, GraphQLSchema } from 'graphql';
 
 class FetchApi {
   static instance: FetchApi = new FetchApi();
@@ -32,7 +23,13 @@ class FetchApi {
 
       const data: object = await res.json();
 
-    return data;
+      return data;
+    } catch (error) {
+      if (error instanceof Error) {
+        return error;
+      }
+      return null;
+    }
   }
 
   public async RequestIntrospection(): Promise<GraphQLSchema | Error | null> {
