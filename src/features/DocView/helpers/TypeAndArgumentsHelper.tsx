@@ -5,6 +5,7 @@ import {
   GraphQLInputObjectType,
   GraphQLNonNull,
   GraphQLObjectType,
+  GraphQLOutputType,
   GraphQLScalarType,
 } from 'graphql';
 import { type } from 'os';

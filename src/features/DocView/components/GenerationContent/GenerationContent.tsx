@@ -177,7 +177,7 @@ function GenerationContent(props: GenContentType) {
 
   const handlerFields = (context: GraphQLField<object, object>) => {
     const args = context.args.slice();
-    const type = context.type;
+    const type = context.type as GraphQLObjectType;
 
     console.log(context);
     // if (type instanceof GraphQLNonNull) {
