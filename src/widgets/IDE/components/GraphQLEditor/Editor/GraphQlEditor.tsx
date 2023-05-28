@@ -42,7 +42,6 @@ const GraphQLEditor = () => {
           lint: {
             options: {
               schema: schema,
-              validationRules: [schema],
             },
           },
           hintOptions: {
